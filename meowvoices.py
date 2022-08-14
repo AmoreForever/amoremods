@@ -7,7 +7,9 @@
 #
 # 🔒 Licensed under the GNU GPLv3
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
-#meta developer: @the_farkhodov
+# meta banner: https://imgur.com/LaWPddI
+# meta developer: @amoremods
+
 # scope: inline 
 
 
