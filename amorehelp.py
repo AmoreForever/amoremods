@@ -317,7 +317,7 @@ class AmoreHelpMod(loader.Module):
             else ""
         )
 
-        await self.inline.form(  text = f"{''.join(core_)}{''.join(plain_)}{''.join(inline_)}{no_commands_}{partial_load}\n\n<i>🧳 Modern help menu </i>", reply_markup=[  [{"text": "🧑‍🔧 Support", "callback": self.amore,}, {"text": "🌳 Mods", "url": "https://t.me/amoremods"}],   [{"text": "🔻 Close", "action": "close"}],   ],  message=message,   )
+        await self.inline.form(  text = f"{reply}\n{''.join(core_)}{''.join(plain_)}{''.join(inline_)}{no_commands_}{partial_load}\n\n<i>🧳 Modern help menu </i>", reply_markup=[  [{"text": "🧑‍🔧 Support", "callback": self.amore,}, {"text": "🌳 Mods", "url": "https://t.me/amoremods"}],   [{"text": "🔻 Close", "action": "close"}],   ],  message=message,   )
                 
     async def amore(self, call: InlineCall) -> None:           
            await call.edit(
