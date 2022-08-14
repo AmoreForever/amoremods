@@ -13,7 +13,6 @@
 
 import logging
 from .. import loader
-from .. import loader, utils, main
 
 logger = logging.getLogger(__name__)
 
@@ -36,7 +35,6 @@ class CuteVoices(loader.Module):
     @loader.group_member
     async def cutelistcmd(self, message):
         """Cute voices"""
-        self.chat_id = message.chat_id
         await self.inline.form(
             self.strings("main"),
             reply_markup=[
