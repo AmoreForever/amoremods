@@ -56,7 +56,7 @@ class CuteVoices(loader.Module):
                 ],
                 [{"text": "😌 Close", "action": "close"}],
             ],
-            gif="https://t.me/gifki_anime/14351",
+            gif="https://t.me/ninoupch/19",
             message=message,
         )
 
