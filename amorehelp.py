@@ -8,6 +8,8 @@
 # 🔒 Licensed under the GNU GPLv3
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
+
+# meta banner: https://imgur.com/OGkmhtc
 # meta developer: @sngscamer | @hikariatama 
 
 
