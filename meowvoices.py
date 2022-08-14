@@ -28,13 +28,13 @@ class CuteVoices(loader.Module):
     📦 Version: 1.0.1
     """
 
-    strings = {
-        "name": "Cute meow voices", "main":  "<i><b>◍ Cute meow voices you can found in <a href='https://t.me/hikka_neko/'>Hikka nekoboys</a></b></i>", }
+    strings = { "name": "Cute meow voices", "main":  "<i><b>◍ Cute meow voices you can found in <a href='https://t.me/hikka_neko/'>Hikka nekoboys</a></b></i>", }
     
     
     @loader.group_member
     async def cutelistcmd(self, message):
         """Cute voices"""
+        self.chat_id = message.chat_id
         await self.inline.form(
             self.strings("main"),
             reply_markup=[
