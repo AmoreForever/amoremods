@@ -8,7 +8,7 @@
 # 🔒 Licensed under the GNU GPLv3
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
-
+# scope: inline
 # scope: hikka_only
 # scope: hikka_min 1.3.0
 # meta developer: @amoremods
@@ -17,7 +17,7 @@
 from telethon import events
 from .. import utils, loader
 
-chat = "amoreconverterbot"
+chat = "@amoreconverterbot"
 
 
 class AbstractMod(loader.Module):
@@ -32,7 +32,7 @@ class AbstractMod(loader.Module):
 
     @loader.owner
     @loader.command(ru_doc="<текст> - Создать конспект")
-    async def abscmd(self, message):
+    async def konspcmd(self, message):
         """<text> - Create summary"""
         text = utils.get_args_raw(message)
         message = await utils.answer(message, self.strings("processing"))
@@ -40,7 +40,6 @@ class AbstractMod(loader.Module):
             msgs = []
             msgs += [await conv.send_message("/start")]
             msgs += [await conv.get_response()]
-            msgs += [await conv.send_message("📖 Konspekt yozish")]
             msgs += [await conv.send_message(text)]
             m = await conv.get_response()
 
