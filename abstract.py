@@ -8,7 +8,7 @@
 # 🔒 Licensed under the GNU GPLv3
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
-# scope: inline
+
 # scope: hikka_only
 # scope: hikka_min 1.3.0
 # meta developer: @amoremods
@@ -32,7 +32,7 @@ class AbstractMod(loader.Module):
 
     @loader.owner
     @loader.command(ru_doc="<текст> - Создать конспект")
-    async def konspcmd(self, message):
+    async def abscmd(self, message):
         """<text> - Create summary"""
         text = utils.get_args_raw(message)
         message = await utils.answer(message, self.strings("processing"))
