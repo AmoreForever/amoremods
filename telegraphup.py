@@ -27,6 +27,7 @@ class TelegraphUPMod(loader.Module):
 	strings = {
            "name": "TelegraphUP",
            "here": "✨ Your file here",
+           "mods": "🦓 More modules here",
            "pls_reply": "⚠️ Reply to photo or video/gif",
         }
 	       
@@ -53,13 +54,17 @@ class TelegraphUPMod(loader.Module):
 			await self.inline.form(
                     text=f"🦜 Your file has been successfully uploaded. \n💾 Copy link: 《 <code>{amore}</code> 》",
                     reply_markup=[
-                     [{
-       "text": self.strings("here"), 
-       "url": f"{amore}",
-      }],
-           ], **{"photo": f"{amore}"},
-                    message=message,
-                )
+                        [{
+                  "text": self.strings("here"), 
+                  "url": f"{amore}",
+                        }],
+                        [{
+                  "text": self.strings("mods"), 
+                  "url": "https://t.me/amoremods",
+                        }],
+                     ], **{"photo": f"{amore}"},
+                     message=message,
+                   )
 				
 			
 async def check_media(reply_message):
