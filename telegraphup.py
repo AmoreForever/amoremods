@@ -58,10 +58,6 @@ class TelegraphUPMod(loader.Module):
                   "text": self.strings("here"), 
                   "url": f"{amore}",
                         }],
-                        [{
-                  "text": self.strings("mods"), 
-                  "url": "https://t.me/amoremods",
-                        }],
                      ], **{"photo": f"{amore}"},
                      message=message,
                    )
