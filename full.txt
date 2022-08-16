@@ -4,3 +4,4 @@ abstract
 meowvoices
 createlinks
 instsave
+telegraphup
