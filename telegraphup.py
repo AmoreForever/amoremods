@@ -11,7 +11,7 @@
 # scope: hikka_only
 # scope: hikka_min 1.3.0
 # meta developer: @amoremods
-# meta banner: https://imgur.com/rb3bkdJ
+# meta banner: https://imgur.com/cmteax3
 
 from .. import loader, utils
 import asyncio
@@ -21,7 +21,7 @@ from telethon.tl.types import DocumentAttributeFilename
 
 @loader.tds
 class TelegraphUPMod(loader.Module):
-	"""Upload video and photo to telegraph"""
+ """Upload video/photo and gif to telegraph"""
 	
 	
 	strings = {
@@ -67,7 +67,7 @@ class TelegraphUPMod(loader.Module):
                    )
 				
 			
-async def check_media(reply_message):
+    async def check_media(reply_message):
 	if reply_message and reply_message.media:
 		if reply_message.photo:
 			data = reply_message.photo
@@ -77,7 +77,7 @@ async def check_media(reply_message):
 			if reply_message.audio or reply_message.voice:
 				return False
 			data = reply_message.media.document
-		else:
+        else:
 			return False
 	else:
 		return False
