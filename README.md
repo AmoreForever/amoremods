@@ -1,2 +1,2 @@
-[!mods](https://imgur.com/34UzDjO)
+![mods](https://imgur.com/34UzDjO)
 My mods for userbot hikka
