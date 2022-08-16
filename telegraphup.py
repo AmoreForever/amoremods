@@ -32,7 +32,7 @@ class TelegraphUPMod(loader.Module):
 	       
 	@loader.sudo
 	async def thupcmd(self, message):
-			""".ph <reply photo or video>"""
+			"""<reply photo or video>"""
 			if message.is_reply:
 				reply_message = await message.get_reply_message()
 				data = await check_media(reply_message)
