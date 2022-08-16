@@ -1,1 +1,1 @@
-![mods](https://imgur.com/34UzDjO)
+<img src="https://imgur.com/34UzDjO">
