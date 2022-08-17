@@ -5,7 +5,7 @@
 #
 # https://t.me/the_farkhodov 
 #
-#
+# meta pic: https://imgur.com/Z0PYoK4
 # meta banner: https://imgur.com/xv45CP3
 # meta developer: @amoremods 
 
