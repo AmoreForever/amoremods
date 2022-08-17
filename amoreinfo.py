@@ -9,6 +9,7 @@
 # scope: inline
 # scope: hikka_only
 # scope: hikka_min 1.0.3
+# meta pic: https://imgur.com/TsOJhIR
 # meta developer: @amoremods
 # meta banner: https://imgur.com/MkAmLiv
 
