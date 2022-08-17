@@ -1,2 +1,1 @@
-# amoremods
-My mods for userbot
+<img src="https://imgur.com/34UzDjO">

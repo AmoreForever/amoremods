@@ -1,3 +1,7 @@
 amorehelp
+amoreinfo
+abstract
 meowvoices
 createlinks
+instsave
+telegraphup
