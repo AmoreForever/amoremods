@@ -7,6 +7,8 @@
 #
 # 🔒 Licensed under the GNU GPLv3
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
+
+# meta pic: https://imgur.com/T6GPCfT
 # meta banner: https://imgur.com/LaWPddI
 # meta developer: @amoremods
 
