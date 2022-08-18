@@ -8,11 +8,11 @@
 # 🔒 Licensed under the GNU GPLv3
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
-# scope: inline
+
 # scope: hikka_only
 # scope: hikka_min 1.3.0
 # meta developer: @amoremods
-# meta pic: https://imgur.com/WoKzecb
+# meta pic: https://te.legra.ph/file/868a280910e7f61f6ab0e.png
 # meta banner: https://imgur.com/EzGrs6h
 
 from telethon import events
@@ -47,7 +47,6 @@ class AbstractMod(loader.Module):
         await self._client.send_file(
             message.peer_id,
             m.media,
-            caption="❤ @amoremods",
             reply_to=message.reply_to_msg_id,
         )
 
