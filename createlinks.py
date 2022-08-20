@@ -1,11 +1,14 @@
 #▄▀█ █▀▄▀█ █▀█ █▀█ █▀▀
 #█▀█ █░▀░█ █▄█ █▀▄ ██▄
-#          
-# © Copyright 2022
+#          
+#             © Copyright 2022
 #
-# https://t.me/the_farkhodov 
+#          https://t.me/the_farkhodov 
 #
-# meta pic: https://imgur.com/Z0PYoK4
+# 🔒 Licensed under the GNU GPLv3
+# 🌐 https://www.gnu.org/licenses/agpl-3.0.html
+
+# meta pic: https://te.legra.ph/file/388e1b26a46a8c439e479.png
 # meta banner: https://imgur.com/xv45CP3
 # meta developer: @amoremods 
 
@@ -24,6 +27,8 @@ class AmorelinksMod(loader.Module):
         "google": "🫂 <b>Google link special for you.</b>\n\n",
         "github": "🫂 <b>Github link special for you.</b>\n\n",
         "pornhub": "🫂 <b>Pornhub link special for you.</b>\n\n",
+        "telegram": "🫂 <b>Telegram link special for you.</b>\n\n",
+        
     }
 
     async def ytcmd(self, message):
@@ -105,6 +110,27 @@ class AmorelinksMod(loader.Module):
                     self.strings("pornhub", message) + s,
                     reply_markup=[
                         [{"text": "🛰 Link", "url": f"https://rt.pornhub.com/video/search?search={text}"}],
+                        [{"text": "🔻 Close", "action": f"close"}],
+                    ],
+                    message=message,
+                )
+            except Exception:
+                await utils.answer(message, self.strings("join", message))
+                
+    async def tgcmd(self, message):
+        """<text> create Telegram link write with @"""
+        text = utils.get_args_raw(message) 
+        s = f"<b>✏ Input word: <code>{text}</code></b>"
+        if await self.allmodules.check_security(
+            message,
+            security.OWNER | security.SUDO,
+        ):
+            
+            try:
+                await self.inline.form(
+                    self.strings("telegram", message) + s,
+                    reply_markup=[
+                        [{"text": "🛰 Link", "url": f"tg://search?query={text}"}],
                         [{"text": "🔻 Close", "action": f"close"}],
                     ],
                     message=message,
