@@ -5,11 +5,13 @@
 #
 #          https://t.me/the_farkhodov 
 #
+# 🔒 Licensed under the GNU GPLv3
+# 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
 # scope: inline
 # scope: hikka_only
-# scope: hikka_min 1.0.3
-# meta pic: https://imgur.com/TsOJhIR
+# scope: hikka_min 1.3.3
+# meta pic: https://te.legra.ph/file/a15f7a16c8806a5d9af1d.png
 # meta developer: @amoremods
 # meta banner: https://imgur.com/MkAmLiv
 
@@ -37,7 +39,7 @@ class AmoreindoMod(loader.Module):
         "build": "Build",
         "prefix": "Prefix",
         "platform": "Platform",
-        "up-to-date": "🎡 Actual version",
+        "up-to-date": "😌 Actual version",
         "update_required": "😕 Outdated version </b><code>.update</code><b>",
         "_cfg_cst_msg": "Custom message for info. May contain {me}, {version}, {build}, {prefix}, {platform}, {upd}, {time}, {uptime} keywords",
         "_cfg_cst_btn": "Custom button for info. Leave empty to remove button",
@@ -45,8 +47,9 @@ class AmoreindoMod(loader.Module):
         "_cfg_cst_frmt": "Custom fileformat for Banner info.",
         "_cfg_banner": "Set `True` in order to disable an image banner",
         "_cfg_time": "Use 1, -1, -3 etc.",
+        "_cfg_close": "Here you can change close button name",
     }
-        
+
     def __init__(self):
         self.config = loader.ModuleConfig(
             loader.ConfigValue(
@@ -90,9 +93,14 @@ class AmoreindoMod(loader.Module):
                 validator=loader.validators.Choice(["photo", "video", "gif"]),
             ),
             loader.ConfigValue(
-                "timezone",  
+                "timezone",
                 "+5",
                 lambda: self.strings("_cfg_time"),
+            ),
+            loader.ConfigValue(
+                "close_btn",
+                "🔻Close",
+                lambda: self.strings("_cfg_close"),
             ),
         )
 
@@ -118,7 +126,7 @@ class AmoreindoMod(loader.Module):
         build = f'<a href="https://github.com/hikariatama/Hikka/commit/{ver}">#{ver[:8]}</a>'  # fmt: skip
         prefix = f"«<code>{utils.escape_html(self.get_prefix())}</code>»"
         platform = utils.get_named_platform()
-        uptime= utils.formatted_uptime()
+        uptime = utils.formatted_uptime()
         offset = datetime.timedelta(hours=self.config["timezone"])
         tz = datetime.timezone(offset)
         time1 = datetime.datetime.now(tz)
@@ -138,14 +146,14 @@ class AmoreindoMod(loader.Module):
             )
             if self.config["custom_message"] != "no"
             else (
-                "<b>🌳 Amoreinfo Hikka </b>\n"
-                f'<b>🧑‍💻 {self.strings("owner")}: </b>{me}\n\n'
-                f"<b>🛰 {self.strings('version')}: </b>{version} {build}\n"
+                "<b>🌳Amoreinfo Hikka </b>\n"
+                f'<b>🤴 {self.strings("owner")}: </b>{me}\n\n'
+                f"<b>🕶 {self.strings('version')}: </b>{version} {build}\n"
                 f"<b>{upd}</b>\n"
                 f"<b>⏳ Uptime: {uptime}</b>\n\n"
                 f"<b>⌚ Time: {time}</b>\n"
-                f"<b>🎷 {self.strings('prefix')}: </b>{prefix}\n"
-                f"<b>📻 {self.strings('platform')}: </b>{platform}\n"
+                f"<b>📼 {self.strings('prefix')}: </b>{prefix}\n"
+                f"{platform}\n"
             )
         )
 
@@ -179,21 +187,15 @@ class AmoreindoMod(loader.Module):
                 if self.config["custom_button3"]
                 else None
             )
-            
+
         elif int == 4:
             return (
                 {
-                    "text": "🔻Close",
+                    "text": self.config["close_btn"],
                     "action": "close",
                 }
-            )
-
-        elif int == 5:
-            return (
-                {
-                    "text": "🪂Update",
-                    "data": "hikka_update",
-                }
+                if self.config["close_btn"]
+                else None
             )
 
     @loader.owner
@@ -203,7 +205,6 @@ class AmoreindoMod(loader.Module):
         m2 = self._get_mark(2)
         m3 = self._get_mark(3)
         m4 = self._get_mark(4)
-        m5 = self._get_mark(5)
 
         await self.inline.form(
             message=message,
@@ -218,10 +219,9 @@ class AmoreindoMod(loader.Module):
                 ],
                 [
                     *([m4] if m4 else []),
-                    *([m5] if m5 else []),
                 ],
             ],
             **{}
             if self.config["disable_banner"]
-            else {self.config["custom_format"]: self.config["custom_banner"]}
+            else {self.config["custom_format"]: self.config["custom_banner"]},
         )
