@@ -8,16 +8,16 @@
 # 🔒 Licensed under the GNU GPLv3
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
-# meta pic: https://imgur.com/GiibLWW
+# meta pic: https://te.legra.ph/file/27beb1ee8f321aa28a970.png
 # meta banner: https://imgur.com/OGkmhtc
-# meta developer: @sngscamer | @hikariatama 
+# meta developer: @sngscamer | @hikariatama
 
 
 import difflib
 import inspect
 import logging
 
-from telethon.tl.functions.channels import JoinChannelRequest
+
 from telethon.tl.types import Message
 from ..inline.types import InlineCall
 from .. import loader, security, utils
@@ -176,7 +176,6 @@ class AmoreHelpMod(loader.Module):
         await utils.answer(
             message, f"{reply}\n\n{self.strings('not_exact') if not exact else ''}"
         )
-        
 
     @loader.owner
     async def ihelpcmd(self, message: Message):
@@ -319,20 +318,34 @@ class AmoreHelpMod(loader.Module):
             else ""
         )
 
-        await self.inline.form(  text = f"{reply}\n{''.join(core_)}{''.join(plain_)}{''.join(inline_)}{no_commands_}{partial_load}\n\n<i>🧳 Modern help menu </i>", reply_markup=[  [{"text": "🧑‍🔧 Support", "callback": self.amore,}, {"text": "🌳 Mods", "url": "https://t.me/amoremods"}],   [{"text": "🔻 Close", "action": "close"}],   ],  message=message,   )
-                
-    async def amore(self, call: InlineCall) -> None:           
-           await call.edit(
-			text=f'<b>🌳 Need help? Feel free to join our support chat. We help everyone.</b>',
-			reply_markup=[
-				[
-					{
-						"text": "🧑‍🔧 Support",
-						"url": "https://t.me/hikka_talks",
-					},
-				],
-				[{"text": "закрыть","action": "close"}],
-			],
-		)
-  
-  
+        await self.inline.form(
+            text=f"{reply}\n{''.join(core_)}{''.join(plain_)}{''.join(inline_)}{no_commands_}{partial_load}\n\n<i>🧳 Modern help menu </i>",
+            reply_markup=[
+                [
+                    {
+                        "text": "🧑‍🔧 Support",
+                        "callback": self.amore,
+                    },
+                ],
+                [{"text": "🔻 Close", "action": "close"}],
+            ],
+            message=message,
+        )
+
+    async def amore(self, call: InlineCall) -> None:
+        await call.edit(
+            text=f"<b>🌳 Need help? Feel free to join our support chat. We help everyone.</b>",
+            reply_markup=[
+                [
+                    {
+                        "text": "🧑‍🔧 Support",
+                        "url": "https://t.me/hikka_talks",
+                    },
+                    {
+                        "text": "☀️ Offtop",
+                        "url": "https://t.me/hikka_offtop",
+                     },
+                ],
+                [{"text": "закрыть", "action": "close"}],
+            ],
+        )
