@@ -12,7 +12,7 @@
 # scope: hikka_min 1.3.0
 # meta developer: @amoremods
 # meta pic: https://te.legra.ph/file/5ef64ee0466032d8a4687.png
-# meta banner: https://imgur.com/rb3bkdJ
+# meta banner: https://te.legra.ph/file/a77c133ef877c86f2dc2e.jpg
 
 from .. import loader, utils
 import asyncio
