@@ -10,7 +10,7 @@
 
 
 # meta pic: https://te.legra.ph/file/7772a7dae6290f0a612a6.png
-# meta banner: https://te.legra.ph/file/5f1b98c4a5c0877d7837c.jpg
+# meta banner: https://te.legra.ph/file/ae994e86bb7c0b1f7ef40.jpg
 # meta developer: @amoremods
 
 import random
