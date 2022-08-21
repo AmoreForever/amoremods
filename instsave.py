@@ -11,8 +11,8 @@
 # scope: hikka_only
 # scope: hikka_min 1.3.0
 # meta developer: @amoremods
-# meta pic: https://imgur.com/4W7CzvT
-# meta banner: https://imgur.com/fQebpqe
+# meta pic: https://te.legra.ph/file/0251f5d602a8f32cd7368.png
+# meta banner: https://te.legra.ph/file/d9cc986d2d6a0358e09fc.jpg
 
 from telethon import events
 from .. import utils, loader
