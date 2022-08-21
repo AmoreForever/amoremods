@@ -9,7 +9,7 @@
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
 # meta pic: https://te.legra.ph/file/27beb1ee8f321aa28a970.png
-# meta banner: https://imgur.com/OGkmhtc
+# meta banner: https://te.legra.ph/file/185199b9e3d62479d080b.jpg
 # meta developer: @sngscamer | @hikariatama
 
 
