@@ -8,8 +8,8 @@
 # 🔒 Licensed under the GNU GPLv3
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
-# meta pic: https://imgur.com/T6GPCfT
-# meta banner: https://imgur.com/LaWPddI
+# meta pic: https://te.legra.ph/file/440d432d2977354e9b13a.png
+# meta banner: https://te.legra.ph/file/e00505a786fddf0de4c07.jpg
 # meta developer: @amoremods
 
 # scope: inline 
