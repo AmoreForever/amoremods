@@ -12,7 +12,7 @@
 # scope: hikka_min 1.3.0
 # meta developer: @amoremods
 # meta pic: https://te.legra.ph/file/5ef64ee0466032d8a4687.png
-# meta banner: https://te.legra.ph/file/a77c133ef877c86f2dc2e.jpg
+# meta banner: https://te.legra.ph/file/da67fd8f4ee826d3137a1.jpg
 
 from .. import loader, utils
 import asyncio
@@ -21,11 +21,11 @@ from telethon.tl.types import DocumentAttributeFilename
 
 
 @loader.tds
-class Telegraph(loader.Module):
+class Telegraphup(loader.Module):
     """Upload video and photo to telegraph"""
 
     strings = {
-        "name": "TelegraphUP",
+        "name": "Telegraph",
         "here": "✨ Your file here",
         "info": "ℹ Info",
         "pls_reply": "⚠️ Reply to photo or video/gif",
