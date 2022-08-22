@@ -1,71 +1,100 @@
-# █ █ ▀ █▄▀ ▄▀█ █▀█ ▀    ▄▀█ ▀█▀ ▄▀█ █▀▄▀█ ▄▀█
-# █▀█ █ █ █ █▀█ █▀▄ █ ▄  █▀█  █  █▀█ █ ▀ █ █▀█
-#
+#             █ █ ▀ █▄▀ ▄▀█ █▀█ ▀
+#             █▀█ █ █ █ █▀█ █▀▄ █
 #              © Copyright 2022
+#           https://t.me/hikariatama
 #
-#          https://t.me/hikariatama
-#
-# 🔒 Licensed under the GNU GPLv3
+# 🔒      Licensed under the GNU AGPLv3
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
+# meta developer: @smgscamer | @hikariatama
 # meta pic: https://te.legra.ph/file/27beb1ee8f321aa28a970.png
 # meta banner: https://te.legra.ph/file/185199b9e3d62479d080b.jpg
-# meta developer: @sngscamer | @hikariatama
-
-
+	
 import difflib
 import inspect
 import logging
 
-
 from telethon.tl.types import Message
-from ..inline.types import InlineCall
-from .. import loader, security, utils
+
+from .. import loader, utils
 
 logger = logging.getLogger(__name__)
 
 
 @loader.tds
 class AmoreHelpMod(loader.Module):
-    """Help module, made specifically for Hikka with <3"""
+    """Shows help for modules and commands"""
 
     strings = {
         "name": "AmoreHelp",
         "bad_module": "<b>🚫 <b>Module</b> <code>{}</code> <b>not found</b>",
-        "single_mod_header": "🌑 <b>{}</b>:",
+        "single_mod_header": (
+            "<emoji document_id='5188377234380954537'>🌘</emoji> <b>{}</b>:"
+        ),
         "single_cmd": "\n▫️ <code>{}{}</code> {}",
         "undoc_cmd": "🦥 No docs",
-        "all_header": "🌐 <b>{} mods available, {} hidden:</b>",
+        "all_header": (
+            "<emoji document_id='5188377234380954537'>🌘</emoji> <b>{} mods available,"
+            " {} hidden:</b>"
+        ),
         "mod_tmpl": "\n{} <code>{}</code>",
-        "first_cmd_tmpl": ": ( {}",
+        "first_cmd_tmpl": ": [ {}",
         "cmd_tmpl": " | {}",
         "no_mod": "🚫 <b>Specify module to hide</b>",
-        "hidden_shown": "🌘 <b>{} modules hidden, {} modules shown:</b>\n{}\n{}",
+        "hidden_shown": (
+            "<emoji document_id='5188377234380954537'>🌘</emoji> <b>{} modules hidden,"
+            " {} modules shown:</b>\n{}\n{}"
+        ),
         "ihandler": "\n🎹 <code>{}</code> {}",
         "undoc_ihandler": "🦥 No docs",
-        "partial_load": "⚠️ <b>Userbot is not fully loaded, so not all modules are shown</b>",
-        "not_exact": "⚠️ <b>No exact match occured, so the closest result is shown instead</b>",
+        "support": (
+            "{} <b>Link to </b><a href='https://t.me/hikka_talks'>support chat</a>"
+        ),
+        "partial_load": (
+            "<emoji document_id='5472105307985419058'>☝️</emoji> <b>Userbot is not"
+            " fully loaded, so not all modules are shown</b>"
+        ),
+        "not_exact": (
+            "<emoji document_id='5472105307985419058'>☝️</emoji> <b>No exact match"
+            " occured, so the closest result is shown instead</b>"
+        ),
+        "request_join": "You requested link for Hikka support chat",
     }
 
     strings_ru = {
         "bad_module": "<b>🚫 <b>Модуль</b> <code>{}</code> <b>не найден</b>",
-        "single_mod_header": "🌑 <b>{}</b>:",
+        "single_mod_header": (
+            "<emoji document_id='5188377234380954537'>🌘</emoji> <b>{}</b>:"
+        ),
         "single_cmd": "\n▫️ <code>{}{}</code> {}",
         "undoc_cmd": "🦥 Нет описания",
-        "all_header": "⭐ <b>{} модулей доступно, {} скрыто:</b>",
+        "all_header": (
+            "<emoji document_id='5188377234380954537'>🌘</emoji> <b>{} модулей доступно,"
+            " {} скрыто:</b>"
+        ),
         "mod_tmpl": "\n{} <code>{}</code>",
         "first_cmd_tmpl": ": [ {}",
         "cmd_tmpl": " | {}",
         "no_mod": "🚫 <b>Укажи модуль(-и), которые нужно скрыть</b>",
-        "hidden_shown": "🌐 <b>{} модулей скрыто, {} модулей показано:</b>\n{}\n{}",
+        "hidden_shown": (
+            "<emoji document_id='5188377234380954537'>🌘</emoji> <b>{} модулей скрыто,"
+            " {} модулей показано:</b>\n{}\n{}"
+        ),
         "ihandler": "\n🎹 <code>{}</code> {}",
         "undoc_ihandler": "🦥 Нет описания",
-        "_cmd_doc_helphide": "<модуль(-и)> - Скрывает модуль(-и) из помощи\n*Разделяй имена модулей пробелами",
-        "_cmd_doc_help": "[модуль] [-f] - Показывает помощь",
-        "_cmd_doc_support": "Вступает в чат помощи Hikka",
-        "_cls_doc": "Модуль помощи, сделанный специально для Hikka <3",
-        "partial_load": "⚠️ <b>Юзербот еще не загрузился полностью, поэтому показаны не все модули</b>",
-        "not_exact": "⚠️ <b>Точного совпадения не нашлось, поэтому было выбрано наиболее подходящее</b>",
+        "support": (
+            "{} <b>Ссылка на </b><a href='https://t.me/hikka_talks'>чат помощи</a>"
+        ),
+        "_cls_doc": "Показывает помощь по модулям",
+        "partial_load": (
+            "<emoji document_id='5472105307985419058'>☝️</emoji> <b>Юзербот еще не"
+            " загрузился полностью, поэтому показаны не все модули</b>"
+        ),
+        "not_exact": (
+            "<emoji document_id='5472105307985419058'>☝️</emoji> <b>Точного совпадения"
+            " не нашлось, поэтому было выбрано наиболее подходящее</b>"
+        ),
+        "request_join": "Вы запросили ссылку на чат помощи Hikka",
     }
 
     def __init__(self):
@@ -96,42 +125,79 @@ class AmoreHelpMod(loader.Module):
             ),
         )
 
+    @loader.command(
+        ru_doc=(
+            "<модуль или модули> - Спрятать модуль(-и) из помощи\n*Разделяй модули"
+            " пробелами"
+        )
+    )
+    async def helphide(self, message: Message):
+        """<module or modules> - Hide module(-s) from help
+        *Split modules by spaces"""
+        modules = utils.get_args(message)
+        if not modules:
+            await utils.answer(message, self.strings("no_mod"))
+            return
+
+        mods = [
+            i.strings["name"]
+            for i in self.allmodules.modules
+            if hasattr(i, "strings") and "name" in i.strings
+        ]
+
+        modules = list(filter(lambda module: module in mods, modules))
+        currently_hidden = self.get("hide", [])
+        hidden, shown = [], []
+        for module in modules:
+            if module in currently_hidden:
+                currently_hidden.remove(module)
+                shown += [module]
+            else:
+                currently_hidden += [module]
+                hidden += [module]
+
+        self.set("hide", currently_hidden)
+
+        await utils.answer(
+            message,
+            self.strings("hidden_shown").format(
+                len(hidden),
+                len(shown),
+                "\n".join([f"👁‍🗨 <i>{m}</i>" for m in hidden]),
+                "\n".join([f"👁 <i>{m}</i>" for m in shown]),
+            ),
+        )
+
     async def modhelp(self, message: Message, args: str):
         exact = True
-
-        try:
-            module = next(
-                mod
-                for mod in self.allmodules.modules
-                if mod.strings("name").lower() == args.lower()
-            )
-        except Exception:
-            module = None
+        module = self.lookup(args)
 
         if not module:
-            args = args.lower()
-            args = args[1:] if args.startswith(self.get_prefix()) else args
-            if args in self.allmodules.commands:
-                module = self.allmodules.commands[args].__self__
+            _args = args.lower()
+            _args = _args[1:] if _args.startswith(self.get_prefix()) else _args
+            if _args in self.allmodules.commands:
+                module = self.allmodules.commands[_args].__self__
 
         if not module:
-            module_name = next(  # skipcq: PTC-W0063
-                reversed(
-                    sorted(
-                        [module.strings["name"] for module in self.allmodules.modules],
-                        key=lambda x: difflib.SequenceMatcher(
-                            None,
-                            args.lower(),
-                            x,
-                        ).ratio(),
-                    )
+            module = self.lookup(
+                next(
+                    (
+                        reversed(
+                            sorted(
+                                [
+                                    module.strings["name"]
+                                    for module in self.allmodules.modules
+                                ],
+                                key=lambda x: difflib.SequenceMatcher(
+                                    None,
+                                    args.lower(),
+                                    x,
+                                ).ratio(),
+                            )
+                        )
+                    ),
+                    None,
                 )
-            )
-
-            module = next(  # skipcq: PTC-W0063
-                module
-                for module in self.allmodules.modules
-                if module.strings["name"] == module_name
             )
 
             exact = False
@@ -141,7 +207,13 @@ class AmoreHelpMod(loader.Module):
         except KeyError:
             name = getattr(module, "name", "ERROR")
 
-        reply = self.strings("single_mod_header").format(utils.escape_html(name))
+        _name = (
+            f"{utils.escape_html(name)} (v{module.__version__[0]}.{module.__version__[1]}.{module.__version__[2]})"
+            if hasattr(module, "__version__")
+            else utils.escape_html(name)
+        )
+
+        reply = self.strings("single_mod_header").format(_name)
         if module.__doc__:
             reply += "<i>\nℹ️ " + utils.escape_html(inspect.getdoc(module)) + "\n</i>"
 
@@ -174,11 +246,12 @@ class AmoreHelpMod(loader.Module):
             )
 
         await utils.answer(
-            message, f"{reply}\n\n{self.strings('not_exact') if not exact else ''}"
+            message, f"{reply}\n\n{'' if exact else self.strings('not_exact')}"
         )
 
-    @loader.owner
-    async def ihelpcmd(self, message: Message):
+    @loader.unrestricted
+    @loader.command(ru_doc="[модуль] [-f] - Показать помощь")
+    async def help(self, message: Message):
         """[module] [-f] - Show help"""
         args = utils.get_args_raw(message)
         force = False
@@ -200,10 +273,7 @@ class AmoreHelpMod(loader.Module):
 
         hidden = self.get("hide", [])
 
-        reply = self.strings("all_header").format(
-            count,
-            len(hidden) if not force else 0,
-        )
+        reply = self.strings("all_header").format(count, 0 if force else len(hidden))
         shown_warn = False
 
         plain_ = []
@@ -303,23 +373,26 @@ class AmoreHelpMod(loader.Module):
                 else:
                     plain_ += [tmp]
             elif not shown_warn and (mod.commands or mod.inline_handlers):
-                reply = f"<i>You have permissions to execute only these commands</i>\n{reply}"
+                reply = (
+                    "<i>You have permissions to execute only these"
+                    f" commands</i>\n{reply}"
+                )
                 shown_warn = True
 
         plain_.sort(key=lambda x: x.split()[1])
         core_.sort(key=lambda x: x.split()[1])
         inline_.sort(key=lambda x: x.split()[1])
         no_commands_.sort(key=lambda x: x.split()[1])
-        no_commands_ = "\n".join(no_commands_) if force else ""
+        no_commands_ = "".join(no_commands_) if force else ""
 
         partial_load = (
-            f"\n\n{self.strings('partial_load')}"
-            if not self.lookup("Loader")._fully_loaded
-            else ""
+            ""
+            if self.lookup("Loader")._fully_loaded
+            else f"\n\n{self.strings('partial_load')}"
         )
 
         await self.inline.form(
-            text=f"{reply}\n{''.join(core_)}{''.join(plain_)}{''.join(inline_)}{no_commands_}{partial_load}\n\n<i>🧳 Modern help menu </i>",
+            text=f"{reply}\n{''.join(core_)}{''.join(plain_)}{''.join(inline_)}{no_commands_}{partial_load}\n\n<i>🌘 Hikka fresh and cute Telegram Userbot </i>",
             reply_markup=[
                 [
                     {
