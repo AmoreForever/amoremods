@@ -6,7 +6,7 @@
 # 🔒      Licensed under the GNU AGPLv3
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
-# meta developer: @smgscamer | @hikariatama
+# meta developer: @amoremods | @hikariatama
 # meta pic: https://te.legra.ph/file/27beb1ee8f321aa28a970.png
 # meta banner: https://te.legra.ph/file/185199b9e3d62479d080b.jpg
 	
@@ -14,6 +14,7 @@ import difflib
 import inspect
 import logging
 
+from ..inline.types import InlineCall
 from telethon.tl.types import Message
 
 from .. import loader, utils
