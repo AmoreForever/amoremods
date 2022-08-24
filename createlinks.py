@@ -1,16 +1,17 @@
-#▄▀█ █▀▄▀█ █▀█ █▀█ █▀▀
-#█▀█ █░▀░█ █▄█ █▀▄ ██▄
-#          
-#             © Copyright 2022
+# ▄▀█ █▀▄▀█ █▀█ █▀█ █▀▀
+# █▀█ █░▀░█ █▄█ █▀▄ ██▄
 #
-#          https://t.me/the_farkhodov 
+#             © Copyright 2022
+#
+#          https://t.me/the_farkhodov
 #
 # 🔒 Licensed under the GNU GPLv3
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
 # meta pic: https://te.legra.ph/file/388e1b26a46a8c439e479.png
 # meta banner: https://te.legra.ph/file/8aa1dd5b47692fc35665c.jpg
-# meta developer: @amoremods 
+# meta developer: @amoremods
+ 
 
 
 from .. import loader, utils, main, security
@@ -28,6 +29,7 @@ class AmorelinksMod(loader.Module):
         "github": "🫂 <b>Github link special for you.</b>\n\n",
         "pornhub": "🫂 <b>Pornhub link special for you.</b>\n\n",
         "telegram": "🫂 <b>Telegram link special for you.</b>\n\n",
+        "4pda": "🫂 <b>4pda link special for you.</b>\n\n",
         
     }
 
@@ -118,7 +120,7 @@ class AmorelinksMod(loader.Module):
                 await utils.answer(message, self.strings("join", message))
                 
     async def tgcmd(self, message):
-        """<text> create Telegram link write with @"""
+        """<text> create Telegram link"""
         text = utils.get_args_raw(message) 
         s = f"<b>✏ Input word: <code>{text}</code></b>"
         if await self.allmodules.check_security(
@@ -137,4 +139,24 @@ class AmorelinksMod(loader.Module):
                 )
             except Exception:
                 await utils.answer(message, self.strings("join", message))
-                
+ 
+    async def pdacmd(self, message):
+        """<text> create 4pda link"""
+        text = utils.get_args_raw(message) 
+        s = f"<b>✏ Input word: <code>{text}</code></b>"
+        if await self.allmodules.check_security(
+            message,
+            security.OWNER | security.SUDO,
+        ):
+            
+            try:
+                await self.inline.form(
+                    self.strings("4pda", message) + s,
+                    reply_markup=[
+                        [{"text": "🛰 Link", "url": f"https://4pda.to/forum/index.php?act=search&source=all&forums=316&subforums=1&query={text}"}],
+                        [{"text": "🔻 Close", "action": f"close"}],
+                    ],
+                    message=message,
+                )
+            except Exception:
+                await utils.answer(message, self.strings("join", message))               
