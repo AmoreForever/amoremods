@@ -3,6 +3,8 @@ amoreinfo
 abstract
 bull
 meowvoices
+mydiary
 createlinks
+imgbb
 instsave
 telegraphup
