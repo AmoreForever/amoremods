@@ -30,7 +30,7 @@ emoji_open = "💌 "
 emoji_about = "🚨 "
 
 @loader.tds
-class MyDiaryMod(loader.Module):
+class PagesMod(loader.Module):
     """Diary page"""
 
     strings = {
@@ -168,8 +168,7 @@ class MyDiaryMod(loader.Module):
              f"{self.get_prefix()}config {name}")
              )
     
-    @loader.command()
-    async def mydiary(self, message: Message):
+    async def mydiarycmd(self, message: Message):
             """> Main the diary section"""
             await self.inline.form(
             text = self.config["open_text"],
