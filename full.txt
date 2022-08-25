@@ -8,3 +8,4 @@ createlinks
 imgbb
 instsave
 telegraphup
+searchpic
