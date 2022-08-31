@@ -1,4 +1,4 @@
-inlinehelp
+autoprofile
 amoreinfo
 abstract
 bull
