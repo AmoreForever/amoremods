@@ -112,7 +112,7 @@ class AutoProfileMod(loader.Module):
             offset = datetime.timedelta(hours=self.config["timezone"])
             tz = datetime.timezone(offset)
             time1 = datetime.datetime.now(tz)
-            current_time = time1.strftime("%H:%M:%S")
+            current_time = time1.strftime("%H:%M")
             bio = raw_bio.format(time=current_time)
             await self.client(functions.account.UpdateProfileRequest(about=bio))
             await asyncio.sleep(60)
