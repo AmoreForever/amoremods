@@ -9,3 +9,5 @@ imgbb
 instsave
 telegraphup
 searchpic
+funquotes
+hacker
