@@ -12,3 +12,4 @@ telegraphup
 searchpic
 funquotes
 hacker
+premiuminfo
