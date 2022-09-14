@@ -1,4 +1,4 @@
-__version__ = (1, 0, 0)
+__version__ = (1, 1, 0)
 #            ▄▀█ █▀▄▀█ █▀█ █▀█ █▀▀
 #            █▀█ █░▀░█ █▄█ █▀▄ ██▄
 #
@@ -12,7 +12,7 @@ __version__ = (1, 0, 0)
 
 # meta developer: @amoremods
 # meta banner: https://te.legra.ph/file/9014901e4defe5e1f4405.jpg
-# version : 1.0.0 beta
+# version : 1.1.0 beta
 
 
 import git
@@ -46,7 +46,8 @@ class PremiumInfoMod(loader.Module):
         ),
         "update_required":(
              "<emoji document_id=5776235811980709241>📊</emoji> Outdated version </b><code>.update</code><b>",
-        )
+        ),
+        "_cfg_cst_msg": "Custom message for info. May contain {me}, {version}, {build}, {prefix}, {platform}, {upd}, {uptime} keywords",
     }
 
     strings_ru = {
@@ -67,7 +68,8 @@ class PremiumInfoMod(loader.Module):
         ),
         "update_required":(
              "<emoji document_id=5776235811980709241>📊</emoji> Требуется обновление </b><code>.update</code><b>",
-        )
+        ),
+        "_cfg_cst_msg": "Для кастомизации, ты можешь юзать {me}, {version}, {build}, {prefix}, {platform}, {upd}, {uptime} keywords",
 
     }
     
@@ -77,6 +79,11 @@ class PremiumInfoMod(loader.Module):
                 "Media",  
                 "https://te.legra.ph/file/4b00eeb4e1b11f28d9ff3.jpg",
                 lambda: "Your custom media",
+        ),
+            loader.ConfigValue(
+                "custom_message",  
+                "none",
+                doc=lambda: self.strings("_cfg_cst_msg"),
         ),
     )
 
@@ -95,6 +102,7 @@ class PremiumInfoMod(loader.Module):
         reply = await message.get_reply_message()
 
         media = self.config["Media"]
+
         ver = utils.get_git_hash() or "Unknown"
         try:
             repo = git.Repo()
@@ -107,13 +115,25 @@ class PremiumInfoMod(loader.Module):
 
         me = f'<b><a href="tg://user?id={self._me.id}">{utils.escape_html(get_display_name(self._me))}</a></b>'
         version = f'<i>{".".join(list(map(str, list(main.__version__))))}</i>'
-        build = f'<a href="https://github.com/hikariatama/Hikka/commit/{ver}">#{ver[:8]}</a>'  # fmt: skip
+        build = f'<a href="https://github.com/hikariatama/Hikka/commit/{ver}">#{ver[:8]}</a>'
         prefix = f"«<code>{utils.escape_html(self.get_prefix())}</code>»"
         platform = utils.get_named_platform()
         uptime = utils.formatted_uptime()
-
+        
         hikka = (
-                "<b><emoji document_id=5213123182378098899>💨</emoji> Premium info\n"
+            "<b><emoji document_id=5213123182378098899>💨</emoji> Premium info</b>\n"
+            + self.config["custom_message"].format(
+                me=me,
+                version=version,
+                build=build,
+                upd=upd,
+                prefix=prefix,
+                platform=platform,
+                uptime=uptime,
+            )
+            if self.config["custom_message"] != "none"
+            else (
+                "<b><emoji document_id=5213123182378098899>💨</emoji> Premium info</b>\n"
                 f"<b>{self.strings('own')}: </b>{me}\n\n"
                 f"<b>{self.strings('ver')}: </b>{version} {build}\n"
                 f"<b>{upd}</b>\n"
@@ -121,6 +141,7 @@ class PremiumInfoMod(loader.Module):
                 f"<b>{self.strings('pref')}: </b>{prefix}\n"
                 f"{platform}\n"
             )
+        )
             
 
         await utils.answer(message, "<emoji document_id=5260448035443318264>🙂</emoji><emoji document_id=5258354200231812664>🙂</emoji><emoji document_id=5258242818844925811>🙂</emoji><emoji document_id=5258052895391098219>🙂</emoji> Oppening info...")
