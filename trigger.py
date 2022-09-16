@@ -1,5 +1,5 @@
-#               ▄▀█ █▀▄▀█ █▀█ █▀█ █▀▀
-#               █▀█ █░▀░█ █▄█ █▀▄ ██▄
+#              ▄▀█ █▀▄▀█ █▀█ █▀█ █▀▀
+#              █▀█ █░▀░█ █▄█ █▀▄ ██▄
 #
 #               © Copyright 2022
 #
@@ -8,10 +8,10 @@
 # 🔒 Licensed under the GNU GPLv3
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
-__version__ = (1, 0, 0)
+__version__ = (1, 1, 0)
 
 # meta developer: @amoremods
-
+# meta banner: https://te.legra.ph/file/e0df9cb3feb67962e61d1.jpg
 
 from .. import loader
 import requests
@@ -55,7 +55,7 @@ class TriggerMod(loader.Module):
             reply_markup={"text": "­ ­ ­", "data": "empty"},
             ttl=3600,
         )
-        
+
         await m.edit(
             "🧨 Triggered",
             gif=f"{amore}",
@@ -71,7 +71,9 @@ async def check_media(reply_message):
                 in reply_message.media.document.attributes
             ):
                 return False
-            if reply_message.audio or reply_message.voice:
+            if reply_message.video or reply_message.gif:
+                return False
+            if reply_message.file or reply_message.audio:
                 return False
             data = reply_message.media.document
         else:
