@@ -8,7 +8,7 @@
 # 🔒 Licensed under the GNU GPLv3
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
-# meta banner: https://te.legra.ph/file/715d9204a48a2b0393e31.jpg
+# meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Searchpic.jpg
 # meta developer: @amoremods
 
 from .. import loader, utils

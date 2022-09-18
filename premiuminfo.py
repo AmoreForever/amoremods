@@ -11,7 +11,7 @@ __version__ = (1, 1, 0)
 
 
 # meta developer: @amoremods
-# meta banner: https://te.legra.ph/file/9014901e4defe5e1f4405.jpg
+# meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Premiuminfo.jpg
 # version : 1.1.0 beta
 
 

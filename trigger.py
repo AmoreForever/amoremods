@@ -11,7 +11,7 @@
 __version__ = (1, 1, 0)
 
 # meta developer: @amoremods
-# meta banner: https://te.legra.ph/file/e0df9cb3feb67962e61d1.jpg
+# meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Trigger.jpg
 
 from .. import loader
 import requests

@@ -11,7 +11,7 @@ __version__ = (1, 0, 0)
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
 # meta pic: https://te.legra.ph/file/4c1b4581de961df145a70.png
-# meta banner: https://te.legra.ph/file/9078cd4836a7c29484914.jpg
+# meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Mydiary.jpg
 
 # meta developer: @amoremods & @wilsonmods
 # scope: hikka_min 1.4.0

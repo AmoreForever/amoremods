@@ -9,7 +9,7 @@
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
 # meta pic: https://te.legra.ph/file/440d432d2977354e9b13a.png
-# meta banner: https://te.legra.ph/file/e00505a786fddf0de4c07.jpg
+# meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/MeowVoices.jpg
 # meta developer: @amoremods
 
 # scope: inline 
@@ -41,8 +41,7 @@ class CuteVoices(loader.Module):
         self.chat_id = message.chat_id
         await self.inline.form(
             self.strings("main"),
-            reply_markup=[
-                [{"text": "😻 More modules", "url": "https://t.me/Amoremods"}],               
+            reply_markup=[            
                 [
                     {"text": " ◍ Hikariatama", "callback": self.hikari},
                     {"text": "◍ Vsecoder", "callback": self.vsecod},

@@ -13,7 +13,7 @@
 # scope: hikka_min 1.3.3
 # meta pic: https://te.legra.ph/file/a15f7a16c8806a5d9af1d.png
 # meta developer: @amoremods
-# meta banner: https://te.legra.ph/file/ce9a934d3e1972cf2ca9c.jpg
+# meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/AmoreInfo.jpg
 
 import logging
 import git

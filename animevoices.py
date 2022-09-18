@@ -11,7 +11,7 @@
 # scope: hikka_only
 # scope: hikka_min 1.3.3
 # meta developer: @amoremods
-# meta banner: https://te.legra.ph/file/f8b57640aa11207eabd5a.jpg
+# meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/AnimeVoices.jpg
 
 from .. import loader
 

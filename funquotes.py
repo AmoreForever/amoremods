@@ -10,7 +10,7 @@
 
 
 # meta developer: @amoremods
-# meta banner: https://te.legra.ph/file/9f1c1852dce36c1a9d6f5.jpg
+# meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Funquotes.jpg
 
 from telethon.tl.types import Message
 

@@ -12,7 +12,7 @@
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
 # meta developer: @amoremods
-# meta banner: https://te.legra.ph/file/8f017b6728a1c829c2ed0.jpg
+# meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Imgbb.jpg
 
 
 import imghdr
