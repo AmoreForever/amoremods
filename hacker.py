@@ -8,7 +8,7 @@
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
 # meta developer: @amoremods 
-# meta banner: https://0x0.st/opz1.jpg
+# meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Hacker.jpg
 
 from .. import loader, utils
 import requests
