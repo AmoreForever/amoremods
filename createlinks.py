@@ -9,7 +9,7 @@
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
 # meta pic: https://te.legra.ph/file/388e1b26a46a8c439e479.png
-# meta banner: https://te.legra.ph/file/8aa1dd5b47692fc35665c.jpg
+# meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Createlinks.jpg
 # meta developer: @amoremods
  
 
