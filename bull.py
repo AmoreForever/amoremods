@@ -10,7 +10,7 @@
 
 
 # meta pic: https://te.legra.ph/file/7772a7dae6290f0a612a6.png
-# meta banner: https://te.legra.ph/file/ae994e86bb7c0b1f7ef40.jpg
+# meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Bull.jpg
 # meta developer: @amoremods
 
 import random
