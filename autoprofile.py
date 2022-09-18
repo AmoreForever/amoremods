@@ -25,7 +25,7 @@
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
 # meta developer: FTG & @amoremods
-# meta banner: https://te.legra.ph/file/ab60f2b5ca190422cd9bd.jpg
+# meta banner: hhttps://raw.githubusercontent.com/AmoreForever/assets/master/AutoProfile.jpg
 
 
 import asyncio
