@@ -28,7 +28,6 @@ class FactsMod(loader.Module):
         }
     
     strings_ru = {
-        "name": "Facts",
         "wait": "<emoji document_id=5472146462362048818>💡</emoji> Поиск..."
         }
 
