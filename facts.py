@@ -10,6 +10,7 @@
 
 # meta developer: @amoremods
 # meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Facts.jpg
+# channel @facti_p
 
 chat = "@facti_p"
 
@@ -34,6 +35,7 @@ class FactsMod(loader.Module):
     @loader.command(ru_docs="Интересные Факты")
     async def afactscmd(self, message):
         """Intersting Facts"""
+        reply = await message.get_reply_message()
         await utils.answer(message, self.strings["wait"])
         result = await message.client(
             functions.messages.GetHistoryRequest(
@@ -42,4 +44,8 @@ class FactsMod(loader.Module):
         )
         await sleep(0.30)
         await message.delete()
-        await message.client.send_message(message.to_id, result.messages[0])
+        await message.client.send_message(
+            message.to_id,
+            result.messages[0],
+            reply_to=reply.id if reply else None,
+            )
