@@ -11,6 +11,7 @@ instsave
 telegraphup
 searchpic
 funquotes
+facts
 hacker
 premiuminfo
 trigger
