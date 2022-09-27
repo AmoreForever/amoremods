@@ -81,7 +81,7 @@ class UniversalTimeMod(loader.Module):
 
         amore =(
             f"<emoji document_id=4920662486778119009>🌐</emoji> <b>Universal time</b>\n\n" 
-            f"<emoji document_id=6323139226418284334>🇷🇺</emoji> Russia {ru}\n"
+            f"<emoji document_id=6323139226418284334>🇷🇺</emoji> Russia ➪ {ru}\n"
             f"<emoji document_id=6323430017179059570>🇺🇿</emoji> Uzbekistan ➪ {uz}\n"
             f"<emoji document_id=6323289850921354919>🇺🇦</emoji> Ukraine ➪ {ru}\n"
             f"<emoji document_id=6323575251498174463>🇦🇿</emoji> Azerbaijan ➪ {az}\n"
