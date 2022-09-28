@@ -21,11 +21,14 @@ logger = logging.getLogger(__name__)
 def check_time():
 	jp_time = 9
 	ch_time = 9
+	mo_time = 8
+	ca_time = -8
 	us_time = -7
 	kgz_time = 6
 	uz_time = 5
 	ind_time = 5.30
 	az_time = 4
+	ar_time = -4
 	ru_time = 3
 	gr_time = 2
 	uk_time = 1
@@ -33,43 +36,56 @@ def check_time():
 	offset = datetime.timedelta(hours=ru_time)
 	tz = datetime.timezone(offset)
 	time1 = datetime.datetime.now(tz)
-	ru = time1.strftime("%H:%M:%S")
+	ru = time1.strftime("%H:%M")
 	offset = datetime.timedelta(hours=uz_time)
 	tz = datetime.timezone(offset)
 	time1 = datetime.datetime.now(tz)
-	uz = time1.strftime("%H:%M:%S")
+	uz = time1.strftime("%H:%M")
 	offset = datetime.timedelta(hours=az_time)
 	tz = datetime.timezone(offset)
 	time1 = datetime.datetime.now(tz)
-	az = time1.strftime("%H:%M:%S")
+	az = time1.strftime("%H:%M")
 	offset = datetime.timedelta(hours=gr_time)
 	tz = datetime.timezone(offset)
 	time1 = datetime.datetime.now(tz)
-	gr = time1.strftime("%H:%M:%S")
+	gr = time1.strftime("%H:%M")
 	offset = datetime.timedelta(hours=uk_time)
 	tz = datetime.timezone(offset)
 	time1 = datetime.datetime.now(tz)
-	uk = time1.strftime("%H:%M:%S")
+	uk = time1.strftime("%H:%M")
 	offset = datetime.timedelta(hours=us_time)
 	tz = datetime.timezone(offset)
 	time1 = datetime.datetime.now(tz)
-	us = time1.strftime("%H:%M:%S")
+	us = time1.strftime("%H:%M")
 	offset = datetime.timedelta(hours=kgz_time)
 	tz = datetime.timezone(offset)
 	time1 = datetime.datetime.now(tz)
-	kgz = time1.strftime("%H:%M:%S")
+	kgz = time1.strftime("%H:%M")
 	offset = datetime.timedelta(hours=jp_time)
 	tz = datetime.timezone(offset)
 	time1 = datetime.datetime.now(tz)
-	jp = time1.strftime("%H:%M:%S")
+	jp = time1.strftime("%H:%M")
 	offset = datetime.timedelta(hours=ind_time)
 	tz = datetime.timezone(offset)
 	time1 = datetime.datetime.now(tz)
-	ind = time1.strftime("%H:%M:%S")
+	ind = time1.strftime("%H:%M")
 	offset = datetime.timedelta(hours=ch_time)
 	tz = datetime.timezone(offset)
 	time1 = datetime.datetime.now(tz)
-	ch = time1.strftime("%H:%M:%S")
+	ch = time1.strftime("%H:%M")
+	offset = datetime.timedelta(hours=mo_time)
+	tz = datetime.timezone(offset)
+	time1 = datetime.datetime.now(tz)
+	mo = time1.strftime("%H:%M")
+	offset = datetime.timedelta(hours=ca_time)
+	tz = datetime.timezone(offset)
+	time1 = datetime.datetime.now(tz)
+	ca = time1.strftime("%H:%M")    
+	mo = time1.strftime("%H:%M")
+	offset = datetime.timedelta(hours=ar_time)
+	tz = datetime.timezone(offset)
+	time1 = datetime.datetime.now(tz)
+	ar = time1.strftime("%H:%M")  
 	amore = (
 			f"<emoji document_id=4920662486778119009>🌐</emoji> <b>Universal time</b>\n\n" 
 			f"<emoji document_id=6323139226418284334>🇷🇺</emoji> Russia ➪ {ru}\n"
@@ -88,37 +104,49 @@ def check_time():
 			f"<emoji document_id=6323181871148566277>🇮🇳</emoji> India ➪ {ind}\n"
 			f"<emoji document_id=6323570711717742330>🇫🇷</emoji> France ➪ {gr}\n"
 			f"<emoji document_id=6323453751168337485>🇨🇳</emoji> China ➪ {ch}\n"
-			f"<emoji document_id=6321003171678259486>🇹🇷</emoji> Turkey ➪ {ru}"
+			f"<emoji document_id=6321003171678259486>🇹🇷</emoji> Turkey ➪ {ru}\n"
+            f"<emoji document_id=6323602322677040561>🇨🇱</emoji> Mongolia ➪ {mo}\n"
+            f"<emoji document_id=6323325327351219831>🇨🇦</emoji> Canada ➪ {ca}\n"
+            f"<emoji document_id=6323471399188957082>🇮🇹</emoji> Italia ➪ {uk}\n"
+            f"<emoji document_id=6323516260122363644>🇪🇬</emoji> Egypt ➪ {gr}\n"
+            f"<emoji document_id=6323236391463421376>🇦🇲</emoji> Armenia ➪ {ar}\n\n"
+            f"<emoji document_id=5188216117272780281>🍙</emoji> #whyamore"
 	)
 	return amore
 
+media = "https://te.legra.ph/file/2ab9b131ceceb9b020583.mp4"
 
 @loader.tds
 class UniversalTimeMod(loader.Module):
 	"""See the time of other countries"""
 	
 	strings = {"name": "UnivTime"}
-	
-	
-	@loader.owner
+
+	@loader.command(ru_docs="Смотреть мировое время")
 	async def atimecmd(self, message):
 		"""See time"""
 		kk = check_time()
 		await utils.answer(message, kk)
 
-	@loader.owner
+	@loader.command(ru_docs="Смотреть мировое время в инлайн режиме")
 	async def atimeicmd(self, message):
 		"""See time on inline mode"""
 		kk = check_time()
 		await self.inline.form(
 			text=kk,
 			message=message,
-			gif="https://siasky.net/LACn-4TBB9xoeeKkAcdGEccbiAX6gFGIiErQIFDVJbF0Qw",
+            gif="https://te.legra.ph/file/2ab9b131ceceb9b020583.mp4",
 			reply_markup=[
 				[
 					{
-						"text": "Refresh",
+						"text": "🍃 Refresh",
 						"callback": self.refresh,
+					}
+				],
+                [
+					{
+						"text": "🔻 Close",
+						"action": "close",
 					}
 				]
 			]
@@ -128,14 +156,19 @@ class UniversalTimeMod(loader.Module):
 		kk = check_time()
 		await call.edit(
 			text=kk,
-			gif="https://siasky.net/LACn-4TBB9xoeeKkAcdGEccbiAX6gFGIiErQIFDVJbF0Qw",
 			reply_markup=[
 				[
 					{
-						"text": "Refresh",
+						"text": "🍃 Refresh",
 						"callback": self.refresh,
+					}
+				],
+                [
+					{
+						"text": "🔻 Close",
+						"action": "close",
 					}
 				]
 			]
 		)
-		await call.answer("Refreshed 🎑")
+		await call.answer("Refreshed ✨")
