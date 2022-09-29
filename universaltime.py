@@ -110,7 +110,7 @@ def check_time():
             f"<emoji document_id=6323471399188957082>🇮🇹</emoji> Italia ➪ {uk}\n"
             f"<emoji document_id=6323516260122363644>🇪🇬</emoji> Egypt ➪ {gr}\n"
             f"<emoji document_id=6323236391463421376>🇦🇲</emoji> Armenia ➪ {ar}\n\n"
-            f"<emoji document_id=5188216117272780281>🍙</emoji> #whyamore"
+            f"<emoji document_id=5188216117272780281>🍙</emoji> #whoamore"
 	)
 	return amore
 
