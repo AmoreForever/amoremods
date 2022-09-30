@@ -105,7 +105,7 @@ def check_time():
 			f"<emoji document_id=6323570711717742330>🇫🇷</emoji> France ➪ {gr}\n"
 			f"<emoji document_id=6323453751168337485>🇨🇳</emoji> China ➪ {ch}\n"
 			f"<emoji document_id=6321003171678259486>🇹🇷</emoji> Turkey ➪ {ru}\n"
-            f"<emoji document_id=6323602322677040561>🇨🇱</emoji> Mongolia ➪ {mo}\n"
+            f"<emoji document_id=6323272134181258987>🇲🇳</emoji> Mongolia ➪ {mo}\n"
             f"<emoji document_id=6323325327351219831>🇨🇦</emoji> Canada ➪ {ca}\n"
             f"<emoji document_id=6323471399188957082>🇮🇹</emoji> Italia ➪ {uk}\n"
             f"<emoji document_id=6323516260122363644>🇪🇬</emoji> Egypt ➪ {gr}\n"
