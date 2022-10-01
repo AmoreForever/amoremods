@@ -15,7 +15,7 @@
 # meta pic: https://te.legra.ph/file/868a280910e7f61f6ab0e.png
 # meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Abstract.jpg
 
-from telethon import events
+
 from .. import utils, loader
 
 chat = "@amoreconverterbot"

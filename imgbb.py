@@ -19,7 +19,6 @@ import imghdr
 import io
 import random
 import re
-import os
 
 import requests
 from telethon.errors.rpcerrorlist import YouBlockedUserError
@@ -114,13 +113,4 @@ class ImgbbUploader(loader.Module):
                 )
             except Exception:
                 url = response.raw_text
-            await self.inline.form(
-                  text = f'🌄 <b>File successfully uploaded.</b>\n💾 Copy: <code>{url}</code>', 
-                    reply_markup=[
-                     [{
-							"text": "🔗 Your file here", 
-							"url": f"{url}"
-					 }],
-                     ], **{"photo": f"{url}"},
-                    message=message,
-                )
+            await utils.answer(message, f"😸 Your file uploaded: <code>{url}</code>")

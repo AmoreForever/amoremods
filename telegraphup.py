@@ -15,7 +15,6 @@
 # meta banner: hhttps://raw.githubusercontent.com/AmoreForever/assets/master/Telegraphup.jpg
 
 from .. import loader, utils
-import asyncio
 import requests
 from telethon.tl.types import DocumentAttributeFilename
 
@@ -26,8 +25,6 @@ class Telegraphup(loader.Module):
 
     strings = {
         "name": "Telegraph",
-        "here": "✨ Your file here",
-        "info": "ℹ Info",
         "pls_reply": "⚠️ Reply to photo or video/gif",
     }
 
@@ -52,26 +49,7 @@ class Telegraphup(loader.Module):
             amore = "https://te.legra.ph" + path[0]["src"]
         except KeyError:
             amore = path["error"]
-        await self.inline.form(
-            text=f"🦜 Your file has been successfully uploaded. \n💾 Copy link: <code>{amore}</code>",
-            reply_markup=[
-                [
-                    {
-                        "text": self.strings("here"),
-                        "url": f"{amore}",
-                    }
-                ],
-                [
-                    {
-                        "text": self.strings("info"),
-                        "action": "answer",
-                        "message": "ℹ This module upload photo/video/gif to telegra.ph",
-                    }
-                ],
-            ],
-            **{"photo": f"{amore}"},
-            message=message,
-        )
+        await utils.answer(message, f"😸 Your file uploaded: <code>{amore}</code>")
 
 
 async def check_media(reply_message):

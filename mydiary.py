@@ -16,7 +16,6 @@ __version__ = (1, 0, 0)
 # meta developer: @amoremods & @wilsonmods
 # scope: hikka_min 1.4.0
 
-import logging
 
 from .. import loader, utils
 from telethon.tl.types import Message
