@@ -14,7 +14,6 @@
 # meta pic: https://te.legra.ph/file/0251f5d602a8f32cd7368.png
 # meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Instsave.jpg
 
-from telethon import events
 from .. import utils, loader
 
 chat = "@UltraDownBot"

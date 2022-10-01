@@ -17,7 +17,6 @@ __version__ = (1, 1, 0)
 
 import git
 import logging
-from asyncio import sleep
 from telethon.utils import get_display_name
 
 from .. import loader, main, utils
@@ -143,10 +142,6 @@ class PremiumInfoMod(loader.Module):
             )
         )
             
-
-        await utils.answer(message, "<emoji document_id=5260448035443318264>🙂</emoji><emoji document_id=5258354200231812664>🙂</emoji><emoji document_id=5258242818844925811>🙂</emoji><emoji document_id=5258052895391098219>🙂</emoji> Oppening info...")
-        await sleep(0.25)
-        await message.delete()
         await self._client.send_file(
             message.peer_id,
             media,
