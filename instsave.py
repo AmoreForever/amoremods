@@ -16,7 +16,7 @@
 
 from .. import utils, loader
 
-chat = "@UltraDownBot"
+chat = "@IsaversBot"
 
 
 class InstagramMod(loader.Module):
