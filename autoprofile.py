@@ -33,6 +33,7 @@ import datetime
 
 from telethon.tl import functions
 from telethon.utils import get_display_name
+
 from .. import loader, utils
 
 
@@ -43,7 +44,7 @@ class AutoProfileMod(loader.Module):
     strings = {
         "name": "AutoProfile",
         "invalid_args": (
-            "<b>Missing parameters, please read the <code>.adocs</code>  <emoji document_id=5213468029597261187>✔️</emoji></b>"
+            "<b>Missing parameters, please read the <code>.aguide</code>  <emoji document_id=5213468029597261187>✔️</emoji></b>"
         ),
         "missing_time": (
             "<b>Time was not specified in bio <emoji document_id=5215273032553078755>❎</emoji></b>"
@@ -71,7 +72,7 @@ class AutoProfileMod(loader.Module):
 
     strings_ru = {
         "invalid_args": (
-            "<b>Не правильные аргуметы, прочитай <code>.adocs</code> <emoji document_id=5213468029597261187>✔️</emoji></b>"
+            "<b>Не правильные аргуметы, прочитай <code>.aguide</code> <emoji document_id=5213468029597261187>✔️</emoji></b>"
         ),
         "missing_time": (
             "<b>Время не было установлено в био<emoji document_id=5215273032553078755>❎</emoji></b>"
@@ -110,7 +111,7 @@ class AutoProfileMod(loader.Module):
             ),
         )
 
-    async def client_ready(self, client):
+    async def client_ready(self, client, db):
         self.client = client
         self._me = await client.get_me()
  
@@ -208,7 +209,7 @@ class AutoProfileMod(loader.Module):
             )
         )
     
-    @loader.command(ru_docs="""Гайд ru/en""")
+    @loader.command(ru_docs="""Доки ru/en""")
     async def aguide(self, message):
         "Just guide ru/en"
         args = utils.get_args_raw(message)
