@@ -11,6 +11,7 @@
 
 # meta developer: @amoremods
 # meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Funquotes.jpg
+__version__ = (1, 0, 0)
 
 from telethon.tl.types import Message
 

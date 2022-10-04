@@ -13,6 +13,7 @@
 # meta developer: @amoremods
 # meta pic: https://te.legra.ph/file/0251f5d602a8f32cd7368.png
 # meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Instsave.jpg
+__version__ = (1, 0, 0)
 
 from .. import utils, loader
 

@@ -26,14 +26,13 @@
 
 # meta developer: FTG & @amoremods
 # meta banner: hhttps://raw.githubusercontent.com/AmoreForever/assets/master/AutoProfile.jpg
-
+__version__ = (1, 1, 0)
 
 import asyncio
-import time
 import datetime
 
 from telethon.tl import functions
-
+from telethon.utils import get_display_name
 from .. import loader, utils
 
 
@@ -43,26 +42,58 @@ class AutoProfileMod(loader.Module):
 
     strings = {
         "name": "AutoProfile",
-        "invalid_args": "<b>Missing parameters, please read the docs❗️</b>",
-        "missing_time": "<b>Time was not specified in bio❗️</b>",
-        "enabled_bio": "<b>Enabled bio clock ✅</b>",
-        "bio_not_enabled": "<b>Bio clock is not enabled❗️</b>",
-        "disabled_bio": "<b>Disabled bio clock ✅</b>",
-        "enabled_name": "<b>Enabled name clock ✅</b>",
-        "name_not_enabled": "<b>Name clock is not enabled❗️</b>",
-        "disabled_name": "<b>Name clock disabled ✅</b>",
+        "invalid_args": (
+            "<b>Missing parameters, please read the <code>.adocs</code>  <emoji document_id=5213468029597261187>✔️</emoji></b>"
+        ),
+        "missing_time": (
+            "<b>Time was not specified in bio <emoji document_id=5215273032553078755>❎</emoji></b>"
+        ),
+        "enabled_bio": (
+            "<b>Enabled bio clock <emoji document_id=5212932275376759608>✅</emoji></b>"
+        ),
+        "bio_not_enabled": (
+            "<b>Bio clock is not enabled <emoji document_id=5215273032553078755>❎</emoji></b>"
+        ),
+        "disabled_bio": (
+            "<b>Disabled bio clock <emoji document_id=5212932275376759608>✅</emoji></b>"
+        ),
+        "enabled_name": ( 
+            "<b>Enabled name clock <emoji document_id=5212932275376759608>✅</emoji></b>"
+        ),
+        "name_not_enabled": (
+            "<b>Name clock is not enabled <emoji document_id=5215273032553078755>❎</emoji></b>"
+        ),
+        "disabled_name": (
+            "<b>Name clock disabled <emoji document_id=5215273032553078755>❎</emoji></b>"
+        ),
         "_cfg_time": "Use timezone 1, -1, -3 etc.",
     }
 
     strings_ru = {
-        "invalid_args": "<b>Не правильные аргуметы, прочитай доки❗️</b>",
-        "missing_time": "<b>Время не было установлено в био❗️</b>",
-        "enabled_bio": "<b>Био часы успешно установлены ✅</b>",
-        "bio_not_enabled": "<b>Часы не установлено в био❗️</b>",
-        "disabled_bio": "<b>Время в био успешно отключен ✅</b>",
-        "enabled_name": "<b>Часы в ник успешно установлены ✅</b>",
-        "name_not_enabled": "<b>Часы не установлены в ник❗️</b>",
-        "disabled_name": "<b>Время в нике успешно отключен ✅</b>",
+        "invalid_args": (
+            "<b>Не правильные аргуметы, прочитай <code>.adocs</code> <emoji document_id=5213468029597261187>✔️</emoji></b>"
+        ),
+        "missing_time": (
+            "<b>Время не было установлено в био<emoji document_id=5215273032553078755>❎</emoji></b>"
+        ),
+        "enabled_bio": (
+            "<b>Био часы успешно установлены <emoji document_id=5212932275376759608>✅</emoji></b>"
+        ),
+        "bio_not_enabled": (
+            "<b>Часы не установлено в био<emoji document_id=5215273032553078755>❎</emoji></b>"
+        ),
+        "disabled_bio": (
+            "<b>Время в био успешно отключен <emoji document_id=5212932275376759608>✅</emoji></b>"
+        ),
+        "enabled_name": (
+            "<b>Часы в ник успешно установлены <emoji document_id=5212932275376759608>✅</emoji></b>"
+        ),
+        "name_not_enabled": (
+            "<b>Часы не установлены в ник<emoji document_id=5215273032553078755>❎</emoji></b>"
+        ),
+        "disabled_name": (
+            "<b>Время в нике успешно отключен <emoji document_id=5212932275376759608>✅</emoji></b>"
+        ),  
         "_cfg_time": "Используй таймзону 1, -1, -3 и тд.",
     }
 
@@ -79,8 +110,9 @@ class AutoProfileMod(loader.Module):
             ),
         )
 
-    async def client_ready(self, client, db):
+    async def client_ready(self, client):
         self.client = client
+        self._me = await client.get_me()
  
     @loader.command(ru_doc="""Что-бы указать таймзону через конфиг""")
     async def cfautoprofcmd(self, message):
@@ -103,6 +135,7 @@ class AutoProfileMod(loader.Module):
         if "{time}" not in raw_bio:
             return await utils.answer(message, self.strings("missing_time", message))
 
+        
         self.bio_enabled = True
         self.raw_bio = raw_bio
         await self.allmodules.log("start_autobio")
@@ -124,6 +157,7 @@ class AutoProfileMod(loader.Module):
         if self.bio_enabled is False:
             return await utils.answer(message, self.strings("bio_not_enabled", message))
         self.bio_enabled = False
+        
         await self.allmodules.log("stop_autobio")
         await utils.answer(message, self.strings("disabled_bio", message))
         await self.client(
@@ -159,11 +193,12 @@ class AutoProfileMod(loader.Module):
     @loader.command(ru_doc="""Что-бы остановить время в имени учетной записи введи .stopautoname""")
     async def stopautonamecmd(self, message):
         """just write .stopautoname"""
-
+        
         if self.name_enabled is False:
             return await utils.answer(
                 message, self.strings("name_not_enabled", message)
             )
+        
         self.name_enabled = False
         await self.allmodules.log("stop_autoname")
         await utils.answer(message, self.strings("disabled_name", message))
@@ -172,3 +207,24 @@ class AutoProfileMod(loader.Module):
                 first_name=self.raw_name.format(time="")
             )
         )
+    
+    @loader.command(ru_docs="""Гайд ru/en""")
+    async def aguide(self, message):
+        "Just guide ru/en"
+        args = utils.get_args_raw(message)
+        args = args if args in {"en", "ru"} else "en"
+
+        time = "{time}"
+        nick = f'<a href="tg://user?id={self._me.id}">{utils.escape_html(get_display_name(self._me))}</a>'
+        pref = f"{utils.escape_html(self.get_prefix())}"
+
+        await utils.answer(
+            message, 
+            f"<emoji document_id=5789581976176430614>💸</emoji> For example:\n\n<emoji document_id=5789667570579672963>💸</emoji> AutoName: <code>{pref}autoname '{nick} | {time}'</code>\n"
+            f"<emoji document_id=5789667570579672963>💸</emoji> AutoBio: <code>{pref}autobio 'smth | {time}'</code>\n"
+        if args == "en"
+        else (
+            f"<emoji document_id=5789581976176430614>💸</emoji> Например:\n\n<emoji document_id=5789667570579672963>💸</emoji> Авто Ник: <code>{pref}autoname '{nick} | {time}'</code>\n"
+            f"<emoji document_id=5789667570579672963>💸</emoji> Авто Био: <code>{pref}autobio 'что-то | {time}'</code>\n"
+        ),
+    )

@@ -9,6 +9,8 @@
 
 # meta developer: @amoremods 
 # meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Hacker.jpg
+__version__ = (1, 0, 0)
+
 
 from .. import loader, utils
 import requests
@@ -20,10 +22,10 @@ from textwrap import wrap
 class HackerMod(loader.Module):
 	"""Create hacker message stickers"""
 	strings = {
-                     'name': 'Hacker',
-                     'what': 'Reply to text or write text <emoji document_id="5467928559664242360">❗️</emoji>',
-                     'processing': 'Processing <emoji document_id="6334710044407368265">🚀</emoji>'                               
-                     }
+		'name': 'Hacker',
+        'what': 'Reply to text or write text <emoji document_id="5467928559664242360">❗️</emoji>',
+        'processing': 'Processing <emoji document_id="6334710044407368265">🚀</emoji>'
+		}
                      
 	@loader.owner
 	async def hackercmd(self, message):
