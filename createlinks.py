@@ -11,8 +11,11 @@
 # meta pic: https://te.legra.ph/file/388e1b26a46a8c439e479.png
 # meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Createlinks.jpg
 # meta developer: @amoremods
- 
-from .. import loader, utils
+
+
+from .. import loader, utils, security
+
+
 
 @loader.tds
 class AmorelinksMod(loader.Module):
@@ -20,104 +23,139 @@ class AmorelinksMod(loader.Module):
 
     strings = {
         "name": "AmoreLinks",
-        "youtube": "🫂 <u><b>YouTube</u> link special for you.</b>\n\n",
-        "google": "🫂 <u><b>Google</u> link special for you.</b>\n\n",
-        "github": "🫂 <u><b>Github</u> link special for you.</b>\n\n",
-        "pornhub": "🫂 <u><b>Pornhub</u> link special for you.</b>\n\n",
-        "telegram": "🫂 <u><b>Telegram</u> link special for you.</b>\n\n",
-        "4pda": "🫂 <u><b>4pda</u> link special for you.</b>\n\n",
-        "input": "<b>🫧 Input word:</b>",
-        "link": "🔮 Link"
+        "youtube": "🫂 <b>YouTube link special for you.</b>\n\n",
+        "google": "🫂 <b>Google link special for you.</b>\n\n",
+        "github": "🫂 <b>Github link special for you.</b>\n\n",
+        "pornhub": "🫂 <b>Pornhub link special for you.</b>\n\n",
+        "telegram": "🫂 <b>Telegram link special for you.</b>\n\n",
+        "4pda": "🫂 <b>4pda link special for you.</b>\n\n",
+        
     }
-
-    strings_ru = {
-        "youtube": "🫂 <b>Ссылка на <u>Youtube</u> специально для тебя</b>\n\n",
-        "google": "🫂 <b>Ссылка на <u>Google</u> специально для тебя</b>\n\n",
-        "github": "🫂 <b>Ссылка на <u>Github</u> специально для тебя</b>\n\n",
-        "pornhub": "🫂 <b>Ссылка на <u>Pornhub</u> специально для тебя</b>\n\n",
-        "telegram": "🫂 <b>Ссылка на <u>Telegram</u> специально для тебя</b>\n\n",
-        "4pda": "🫂 <b>Ссылка на <u>4Pda</u> специально для тебя</b>\n\n",
-        "input": "<b>🫧 Введенный запрос:</b>",
-        "link": "🔮 Ссылка"
-    }
-
 
     async def ytcmd(self, message):
         """<text> create YouTube link"""
         text = utils.get_args_raw(message) 
-        s = self.strings("input") + f" <code>{text}</code>"
-
-        await self.inline.form(
+        s = f"<b>✏ Input word: <code>{text}</code></b>"
+        if await self.allmodules.check_security(
+            message,
+            security.OWNER | security.SUDO,
+        ):
+            
+            try:
+                await self.inline.form(
                     self.strings("youtube", message) + s,
                     reply_markup=[                        
-                        [{"text": self.strings("link"), "url": f"https://m.youtube.com/results?sp=mAEA&search_query={text}"}]
+                        [{"text": "♨️ Link", "url": f"https://m.youtube.com/results?sp=mAEA&search_query={text}"}],
+                        [{"text": "🔻 Close", "action": f"close"}],
                         
                     ],
                     message=message,
                 )
+            except Exception:
+                await utils.answer(message, self.strings("join", message))
                 
 
     async def gugcmd(self, message):
         """<text> create Google link"""
         text = utils.get_args_raw(message) 
-        s = self.strings("input") + f" <code>{text}</code>"
-        
-        await self.inline.form(
+        s = f"<b>✏ Input word: <code>{text}</code></b>"
+        if await self.allmodules.check_security(
+            message,
+            security.OWNER | security.SUDO,
+        ):
+            
+            try:
+                await self.inline.form(
                     self.strings("google", message) + s,
                     reply_markup=[
-                        [{"text": self.strings("link"), "url": f"https://www.google.com/search?q={text}"}]
+                        [{"text": "🛰 Link", "url": f"https://www.google.com/search?q={text}"}],
+                        [{"text": "🔻 Close", "action": f"close"}],
                     ],
                     message=message,
                 )
+            except Exception:
+                await utils.answer(message, self.strings("join", message))
                 
     async def ghcmd(self, message):
         """<text> create Github link"""
         text = utils.get_args_raw(message) 
-        s = self.strings("input") + f" <code>{text}</code>"
-        
-        await self.inline.form(
+        s = f"<b>✏ Input word: <code>{text}</code></b>"
+        if await self.allmodules.check_security(
+            message,
+            security.OWNER | security.SUDO,
+        ):
+            
+            try:
+                await self.inline.form(
                     self.strings("github", message) + s,
                     reply_markup=[
-                        [{"text": self.strings("link"), "url": f"https://github.com/search?q={text}"}]
+                        [{"text": "🛰 Link", "url": f"https://github.com/search?q={text}"}],
+                        [{"text": "🔻 Close", "action": f"close"}],
                     ],
                     message=message,
                 )
+            except Exception:
+                await utils.answer(message, self.strings("join", message))
            
     async def phcmd(self, message):
         """<text> create PornHub link"""
         text = utils.get_args_raw(message) 
-        s = self.strings("input") + f" <code>{text}</code>"
-
-        await self.inline.form(
+        s = f"<b>✏ Input word: <code>{text}</code></b>"
+        if await self.allmodules.check_security(
+            message,
+            security.OWNER | security.SUDO,
+        ):
+            
+            try:
+                await self.inline.form(
                     self.strings("pornhub", message) + s,
                     reply_markup=[
-                        [{"text": self.strings("link"), "url": f"https://rt.pornhub.com/video/search?search={text}"}]
+                        [{"text": "🛰 Link", "url": f"https://rt.pornhub.com/video/search?search={text}"}],
+                        [{"text": "🔻 Close", "action": f"close"}],
                     ],
                     message=message,
                 )
+            except Exception:
+                await utils.answer(message, self.strings("join", message))
                 
     async def tgcmd(self, message):
         """<text> create Telegram link"""
         text = utils.get_args_raw(message) 
-        s = self.strings("input") + f" <code>{text}</code>"
-        
-        await self.inline.form(
+        s = f"<b>✏ Input word: <code>{text}</code></b>"
+        if await self.allmodules.check_security(
+            message,
+            security.OWNER | security.SUDO,
+        ):
+            
+            try:
+                await self.inline.form(
                     self.strings("telegram", message) + s,
                     reply_markup=[
-                        [{"text": self.strings("link"), "url": f"tg://search?query={text}"}]
+                        [{"text": "🛰 Link", "url": f"tg://search?query={text}"}],
+                        [{"text": "🔻 Close", "action": f"close"}],
                     ],
                     message=message,
                 )
+            except Exception:
+                await utils.answer(message, self.strings("join", message))
  
     async def pdacmd(self, message):
         """<text> create 4pda link"""
         text = utils.get_args_raw(message) 
-        s = self.strings("input") + f" <code>{text}</code>"
-
-        await self.inline.form(
+        s = f"<b>✏ Input word: <code>{text}</code></b>"
+        if await self.allmodules.check_security(
+            message,
+            security.OWNER | security.SUDO,
+        ):
+            
+            try:
+                await self.inline.form(
                     self.strings("4pda", message) + s,
                     reply_markup=[
-                        [{"text": self.strings("link"), "url": f"https://4pda.to/forum/index.php?act=search&source=all&forums=316&subforums=1&query={text}"}]
+                        [{"text": "🛰 Link", "url": f"https://4pda.to/forum/index.php?act=search&source=all&forums=316&subforums=1&query={text}"}],
+                        [{"text": "🔻 Close", "action": f"close"}],
                     ],
                     message=message,
-                )             
+                )
+            except Exception:
+                await utils.answer(message, self.strings("join", message))               
