@@ -20,25 +20,7 @@ class AmorelinksMod(loader.Module):
 
     strings = {
         "name": "AmoreLinks",
-        "youtube": "🫂 <b><u>YouTube</u> link special for you.</b>\n\n",
-        "google": "🫂 <b><u>Google</u> link special for you.</b>\n\n",
-        "github": "🫂 <b><u>Github</u> link special for you.</b>\n\n",
-        "pornhub": "🫂 <b><u>Pornhub</u> link special for you.</b>\n\n",
-        "telegram": "🫂 <b><u>Telegram</u> link special for you.</b>\n\n",
-        "4pda": "🫂 <b>4pda</u> link special for you.</b>\n\n",
-        "input": "<b>🫧 Input word:</b>",
-        "link": "🔮 Link"
-    }
-
-    strings_ru = {
-        "youtube": "🫂 <b>Ссылка на <u>Youtube</u> специально для тебя</b>\n\n",
-        "google": "🫂 <b>Ссылка на <u>Google</u> специально для тебя</b>\n\n",
-        "github": "🫂 <b>Ссылка на <u>Github</u> специально для тебя</b>\n\n",
-        "pornhub": "🫂 <b>Ссылка на <u>Pornhub</u> специально для тебя</b>\n\n",
-        "telegram": "🫂 <b>Ссылка на <u>Telegram</u> специально для тебя</b>\n\n",
-        "4pda": "🫂 <b>Ссылка на <u>4Pda</u> специально для тебя</b>\n\n",
-        "input": "<b>🫧 Введенный запрос:</b>",
-        "link": "🔮 Ссылка"
+        "input": "<b><emoji document_id=5787196143318339389>✍️</emoji> Input word:</b>",
     }
 
 
@@ -47,76 +29,64 @@ class AmorelinksMod(loader.Module):
         text = utils.get_args_raw(message) 
         s = self.strings("input") + f" <code>{text}</code>"
 
-        await self.inline.form(
-                    self.strings("youtube", message) + s,
-                    reply_markup=[                        
-                        [{"text": self.strings("link"), "url": f"https://m.youtube.com/results?sp=mAEA&search_query={text}"}]      
-                    ],
-                    message=message,
-                )
-                
+        await utils.answer(
+        message,
+        f"{s}\n"
+        f"<emoji document_id=5463206079913533096>📹</emoji><a href='https://m.youtube.com/results?sp=mAEA&search_query={text}'> Watch on Youtube</a>"
+    )
 
     async def gugcmd(self, message):
         """<text> create Google link"""
         text = utils.get_args_raw(message) 
         s = self.strings("input") + f" <code>{text}</code>"
-        
-        await self.inline.form(
-                    self.strings("google", message) + s,
-                    reply_markup=[
-                        [{"text": self.strings("link"), "url": f"https://www.google.com/search?q={text}"}]
-                    ],
-                    message=message,
-                )
+
+        await utils.answer(
+        message,
+        f"{s}\n"
+        f"<emoji document_id=5463409240456567767>🕸</emoji><a href='https://www.google.com/search?q={text}'> See on Google</a>"
+    )
                 
     async def ghcmd(self, message):
         """<text> create Github link"""
         text = utils.get_args_raw(message) 
         s = self.strings("input") + f" <code>{text}</code>"
         
-        await self.inline.form(
-                    self.strings("github", message) + s,
-                    reply_markup=[
-                        [{"text": self.strings("link"), "url": f"https://github.com/search?q={text}"}]
-                    ],
-                    message=message,
-                )
+        await utils.answer(
+        message,
+        f"{s}\n"
+        f"<emoji document_id=5465637267626271756>💻</emoji><a href='https://github.com/search?q={text}'> See on GitHub</a>"
+    )
+        
            
     async def phcmd(self, message):
         """<text> create PornHub link"""
         text = utils.get_args_raw(message) 
         s = self.strings("input") + f" <code>{text}</code>"
 
-        await self.inline.form(
-                    self.strings("pornhub", message) + s,
-                    reply_markup=[
-                        [{"text": self.strings("link"), "url": f"https://rt.pornhub.com/video/search?search={text}"}]
-                    ],
-                    message=message,
-                )
+        await utils.answer(
+        message,
+        f"{s}\n"
+        f"<emoji document_id=5285214543448907623>🍓</emoji><a href='https://rt.pornhub.com/video/search?search={text}'> Watch on PornHub</a>"
+    )
                 
     async def tgcmd(self, message):
         """<text> create Telegram link"""
         text = utils.get_args_raw(message) 
         s = self.strings("input") + f" <code>{text}</code>"
         
-        await self.inline.form(
-                    self.strings("telegram", message) + s,
-                    reply_markup=[
-                        [{"text": self.strings("link"), "url": f"tg://search?query={text}"}]
-                    ],
-                    message=message,
-                )
+        await utils.answer(
+        message,
+        f"{s}\n"
+        f"<emoji document_id=5465204283383224325>💬</emoji><a href='tg://search?query={text}'> Search on Telegram</a>"
+    )
  
     async def pdacmd(self, message):
         """<text> create 4pda link"""
         text = utils.get_args_raw(message) 
         s = self.strings("input") + f" <code>{text}</code>"
 
-        await self.inline.form(
-                    self.strings("4pda", message) + s,
-                    reply_markup=[
-                        [{"text": self.strings("link"), "url": f"https://4pda.to/forum/index.php?act=search&source=all&forums=316&subforums=1&query={text}"}]
-                    ],
-                    message=message,
-                )             
+        await utils.answer(
+        message,
+        f"{s}\n"
+        f"<emoji document_id=5783082376397590030>📱</emoji><a href='https://4pda.to/forum/index.php?act=search&source=all&forums=316&subforums=1&query={text}'> See on GitHub</a>"
+    )            
