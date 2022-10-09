@@ -42,7 +42,7 @@ class PingerMod(loader.Module):
             self.strings("results_ping").format(
                 round((time.perf_counter_ns() - start) / 10**3, 3),
             ),
-            reply_markup=[[{"text": "⏱️ PePing", "callback": self.ladno}]],
+            reply_markup=[[{"text": "⏱️ RePing", "callback": self.ladno}]],
             message=message,
         )
 
@@ -52,7 +52,7 @@ class PingerMod(loader.Module):
 			self.strings("results_ping").format(
                 round((time.perf_counter_ns() - start) / 10**3, 3),
             ),
-			reply_markup=[[{"text": "⏱️ PePing", "callback": self.ladno,}],]
+			reply_markup=[[{"text": "⏱️ RePing", "callback": self.ladno,}],]
 		)
 
     async def ping_inline_handler(self, query: InlineQuery):
@@ -62,7 +62,7 @@ class PingerMod(loader.Module):
                 round((time.perf_counter_ns() - start) / 10**3, 3),
             )
         button = [{
-                    "text": "⏱️ PePing", 
+                    "text": "⏱️ RePing", 
                     "callback": self.ladno
                  }]
         return {
