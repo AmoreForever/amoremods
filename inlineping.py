@@ -16,7 +16,7 @@ import time
 
 from telethon.tl.types import Message
 
-from .. import loader
+from .. import loader, utils
 from ..inline.types import InlineCall, InlineQuery
 
 logger = logging.getLogger(__name__)
@@ -28,30 +28,34 @@ class PingerMod(loader.Module):
 
     strings = {
         "name": "InlinePing",
-        "results_ping": "✨ <b>Telegram ping:</b> <code>{}</code> <b>ms</b>"
+        "results_ping": "✨ <b>Telegram ping:</b> <code>{}</code> <b>ms</b>\n🔮 <b>Uptime: {}</b>"
     }
 
-    strings_ru = {"results_ping": "✨ <b>Скорость отклика Telegram:</b> <code>{}</code> <b>ms</b>"}
+    strings_ru = {"results_ping": "✨ <b>Скорость отклика Telegram:</b> <code>{}</code> <b>ms</b>\n <b>🔮 Аптайм: {}</b>"}
 
     @loader.command(ru_doc="Проверить скорость отклика юзербота")
     async def iping(self, message: Message):
         """Test your userbot ping"""
         start = time.perf_counter_ns()
-
-        await self.inline.form(
-            self.strings("results_ping").format(
+        ping = self.strings("results_ping").format(
                 round((time.perf_counter_ns() - start) / 10**3, 3),
-            ),
+                utils.formatted_uptime(),
+            )
+        
+        await self.inline.form(
+            ping,
             reply_markup=[[{"text": "⏱️ PePing", "callback": self.ladno}]],
             message=message,
         )
 
     async def ladno(self, call: InlineCall):
         start = time.perf_counter_ns()
-        await call.edit(
-			self.strings("results_ping").format(
+        ping = self.strings("results_ping").format(
                 round((time.perf_counter_ns() - start) / 10**3, 3),
-            ),
+                utils.formatted_uptime(),
+            )
+        await call.edit(
+			ping,
 			reply_markup=[[{"text": "⏱️ PePing", "callback": self.ladno,}],]
 		)
 
