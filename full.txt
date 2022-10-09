@@ -9,6 +9,7 @@ createlinks
 imgbb
 instsave
 telegraphup
+inlineping
 searchpic
 funquotes
 facts
