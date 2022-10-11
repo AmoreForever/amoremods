@@ -51,14 +51,9 @@ class TriggerMod(loader.Module):
         m = await self.inline.form(
             text="🎨 ­Wait...­",
             message=message,
-            gif="https://te.legra.ph/file/d88acc0eac21d772747c0.mp4",
-            reply_markup={"text": "­ ­ ­", "data": "empty"},
-            ttl=3600,
-        )
-
-        await m.edit(
-            "🧨 Triggered",
             gif=f"{amore}",
+            reply_markup={},
+            ttl=3600,
         )
 
 async def check_media(reply_message):

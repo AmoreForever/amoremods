@@ -28,10 +28,10 @@ class PingerMod(loader.Module):
 
     strings = {
         "name": "InlinePing",
-        "results_ping": "✨ <b>Telegram ping:</b> <code>{}</code> <b>ms</b>\n🔮 <b>Uptime: {}</b>"
+        "results_ping": "✨ <b>Telegram ping:</b> <code>{}</code> <b>ms</b>"
     }
 
-    strings_ru = {"results_ping": "✨ <b>Скорость отклика Telegram:</b> <code>{}</code> <b>ms</b>\n <b>🔮 Аптайм: {}</b>"}
+    strings_ru = {"results_ping": "✨ <b>Скорость отклика Telegram:</b> <code>{}</code> <b>ms</b>"}
 
     @loader.command(ru_doc="Проверить скорость отклика юзербота")
     async def iping(self, message: Message):
@@ -39,7 +39,6 @@ class PingerMod(loader.Module):
         start = time.perf_counter_ns()
         ping = self.strings("results_ping").format(
                 round((time.perf_counter_ns() - start) / 10**3, 3),
-                utils.formatted_uptime(),
             )
         
         await self.inline.form(
@@ -52,7 +51,6 @@ class PingerMod(loader.Module):
         start = time.perf_counter_ns()
         ping = self.strings("results_ping").format(
                 round((time.perf_counter_ns() - start) / 10**3, 3),
-                utils.formatted_uptime(),
             )
         await call.edit(
 			ping,
