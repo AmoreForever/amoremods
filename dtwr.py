@@ -13,12 +13,8 @@ __version__ = (1, 2, 0)
 # meta developer: @amoremods
 # meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/DTWR.jpg
 
-import logging
-
 from .. import loader, utils
 from telethon.tl.types import Message
-
-logger = logging.getLogger(__name__)
 
 @loader.tds
 class DTWRMod(loader.Module):
@@ -31,6 +27,7 @@ class DTWRMod(loader.Module):
     }
 
     strings = {
+        "name": "DTWR",
         "text": "Кастомный текст",
         "username": "Введи свой юзернэйм без @",
     }
@@ -63,7 +60,6 @@ class DTWRMod(loader.Module):
 
         tag = ["@" + f"{self.config['Username']}"]
         if message.raw_text.lower() in tag:
-            logger.debug("You Tagged!")
             await message.reply(self.config["custom_text"])
             await self._client.send_read_acknowledge(
                 message.chat_id,
