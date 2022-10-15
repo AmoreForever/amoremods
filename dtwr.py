@@ -36,7 +36,7 @@ class DTWRMod(loader.Module):
         self.config = loader.ModuleConfig(
             loader.ConfigValue(
                 "Username",
-                "no",
+                "username",
                 doc=lambda: self.strings("username"),
             ),
             loader.ConfigValue(
@@ -58,8 +58,11 @@ class DTWRMod(loader.Module):
     @loader.tag("only_messages", "only_groups", "in")
     async def watcher(self, message: Message):
 
-        tag = ["@" + f"{self.config['Username']}"]
-        if message.raw_text.lower() in tag:
+        tag = self.config['Username']
+        if tag.startswith('@') is False:
+            tag = f"@{tag}"
+
+        if message.text.lower() == tag:
             await message.reply(self.config["custom_text"])
             await self._client.send_read_acknowledge(
                 message.chat_id,
