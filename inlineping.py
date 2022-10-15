@@ -31,6 +31,16 @@ class PingerMod(loader.Module):
         "results_ping": "✨ <b>Telegram ping:</b> <code>{}</code> <b>ms</b>"
     }
 
+    strings_ru = {"results_ping": "✨ <b>Телеграм пинг:</b> <code>{}</code> <b>ms</b>"}
+
+    strings_uz = {"results_ping": "✨ <b>Telegram ping:</b> <code>{}</code> <b>ms</b>"}
+
+    strings_de = {"results_ping": "✨ <b>Telegramm Ping:</b> <code>{}</code> <b>ms</b>"}
+
+    
+
+
+
     strings_ru = {"results_ping": "✨ <b>Скорость отклика Telegram:</b> <code>{}</code> <b>ms</b>"}
 
     @loader.command(ru_doc="Проверить скорость отклика юзербота")

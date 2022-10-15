@@ -38,7 +38,9 @@ class AmoreindoMod(loader.Module):
         "version": "Version",
         "build": "Build",
         "prefix": "Prefix",
+        "time": "Time",
         "platform": "Platform",
+        "uptime": "Uptime",
         "up-to-date": "😌 Actual version",
         "update_required": "😕 Outdated version </b><code>.update</code><b>",
         "_cfg_cst_msg": "Custom message for info. May contain {me}, {version}, {build}, {prefix}, {platform}, {upd}, {time}, {uptime} keywords",
@@ -50,6 +52,42 @@ class AmoreindoMod(loader.Module):
         "_cfg_close": "Here you can change close button name",
     }
 
+    strings_ru = {
+        "owner": "Владелец",
+        "version": "Версия",
+        "build": "Сборка",
+        "prefix": "Префикс",
+        "uptime": "Аптайм",
+        "platform": "Платформа",
+        "time": "Время",
+        "up-to-date": "😌 Актуальная версия",
+        "update_required": "😕 Требуется обновление </b><code>.update</code><b>",
+    }
+
+    strings_uz = {
+        "owner": "Egasi",
+        "version": "Versiya",
+        "build": "Yig'ish",
+        "prefix": "Prefix",
+        "uptime": "Uptime",
+        "platform": "Platforma",
+        "time": "Soat",
+        "up-to-date": "😌 Joriy versiya",
+        "update_required": "😕 Yangilanish talab qilinadi </b><code>.update</code><b>",
+    }
+
+    strings_de = {
+        "owner": "Besitzer",
+        "version": "Version",
+        "build": "Zusammenbau",
+        "prefix": "Präfix",
+        "uptime": "Betriebszeit",
+        "platform": "Plattform",
+        "time": "Die Zeit",
+        "up-to-date": "😌 Aktuelle Version",
+        "update_required": "😕 Aktualisierung erforderlich </b><code>.update</code><b>",
+    }
+
     def __init__(self):
         self.config = loader.ModuleConfig(
             loader.ConfigValue(
@@ -59,7 +97,7 @@ class AmoreindoMod(loader.Module):
             ),
             loader.ConfigValue(
                 "custom_button1",
-                ["🍭 Mods", "https://t.me/amoremods"],
+                ["🏡 Modules", "https://t.me/amoremods"],
                 lambda: self.strings("_cfg_cst_btn"),
                 validator=loader.validators.Series(min_len=0, max_len=2),
             ),
@@ -77,7 +115,7 @@ class AmoreindoMod(loader.Module):
             ),
             loader.ConfigValue(
                 "custom_banner",
-                "https://t.me/ninoupch/14",
+                "https://te.legra.ph/file/64bde7bf6b8e377521134.mp4",
                 lambda: self.strings("_cfg_cst_bnr"),
             ),
             loader.ConfigValue(
@@ -88,7 +126,7 @@ class AmoreindoMod(loader.Module):
             ),
             loader.ConfigValue(
                 "custom_format",
-                "photo",
+                "gif",
                 lambda: self.strings("_cfg_cst_frmt"),
                 validator=loader.validators.Choice(["photo", "video", "gif"]),
             ),
@@ -146,12 +184,12 @@ class AmoreindoMod(loader.Module):
             )
             if self.config["custom_message"] != "no"
             else (
-                "<b>🌳Amoreinfo Hikka </b>\n"
+                "<b>🎢 AmoreInfo </b>\n"
                 f'<b>🤴 {self.strings("owner")}: </b>{me}\n\n'
                 f"<b>🕶 {self.strings('version')}: </b>{version} {build}\n"
                 f"<b>{upd}</b>\n"
-                f"<b>⏳ Uptime: {uptime}</b>\n\n"
-                f"<b>⌚ Time: {time}</b>\n"
+                f"<b>⏳ {self.strings('uptime')}: {uptime}</b>\n\n"
+                f"<b>⌚ {self.strings('time')}: {time}</b>\n"
                 f"<b>📼 {self.strings('prefix')}: </b>{prefix}\n"
                 f"{platform}\n"
             )

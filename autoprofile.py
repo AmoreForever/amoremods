@@ -70,6 +70,34 @@ class AutoProfileMod(loader.Module):
         "_cfg_time": "Use timezone 1, -1, -3 etc.",
     }
 
+    strings_uz = {
+        "invalid_args": (
+            "<b>to'g'ri argumetlar emas, <code > ni o'qing.aguide</code> <emoji document_id=5213468029597261187>✔️</emoji></b>"
+        ),
+        "missing_time": (
+            "<b>vaqt bio-da o'rnatilmagan<emoji document_id=5215273032553078755 > ❎< / emoji></b>"
+        ),
+        "enabled_bio": (
+            "<b>Bio soat muvaffaqiyatli o'rnatildi <emoji document_id=5212932275376759608>✅</emoji></b>"
+        ),
+        "bio_not_enabled": (
+            "<b>soat bio-ga o'rnatilmagan<emoji document_id=5215273032553078755 > ❎< / emoji > </b>"
+        ),
+        "disabled_bio": (
+            "<b > Bio-dagi vaqt muvaffaqiyatli o'chirildi <emoji document_id = 5212932275376759608>✅</emoji></b>"
+        ),
+        "enabled_name": (
+            "<b>soat taxallusga muvaffaqiyatli o'rnatildi <emoji document_id = 5212932275376759608>✅</emoji></b>"
+        ),
+        "name_not_enabled": (
+            "<b>soat taxallusga o'rnatilmagan<emoji document_id=5215273032553078755 > ❎< / emoji > </b>"
+        ),
+        "disabled_name": (
+            "<b>taxallusdagi vaqt muvaffaqiyatli o'chirildi <emoji document_id = 5212932275376759608>✅</emoji></b>"
+        ),  
+        "_cfg_time": "vaqt zonasidan foydalaning 1, -1, -3 va boshqalar.",
+    }
+
     strings_ru = {
         "invalid_args": (
             "<b>Не правильные аргуметы, прочитай <code>.aguide</code> <emoji document_id=5213468029597261187>✔️</emoji></b>"
@@ -96,6 +124,34 @@ class AutoProfileMod(loader.Module):
             "<b>Время в нике успешно отключен <emoji document_id=5212932275376759608>✅</emoji></b>"
         ),  
         "_cfg_time": "Используй таймзону 1, -1, -3 и тд.",
+    }
+
+    strings_de = {
+        "invalid_args": (
+            "<b>Sind nicht die richtigen Argumente, lies <code>.aguide</code> <emoji document_id=5213468029597261187>✔️</emoji></b>"
+        ),
+        "missing_time": (
+            "<b>Die Zeit wurde nicht auf bio gesetzt<emoji document_id=5215273032553078755>❎</emoji></b>"
+        ),
+        "enabled_bio": (
+            "<b>Bio-Uhr wurde erfolgreich installiert <emoji document_id=5212932275376759608>✅</emoji></b>"
+        ),
+        "bio_not_enabled": (
+            "<b>Die Uhr ist nicht auf bio eingestellt<emoji document_id=5215273032553078755>❎</emoji></b>"
+        ),
+        "disabled_bio": (
+            "<b>Zeit in bio erfolgreich deaktiviert <emoji document_id=5212932275376759608>✅</emoji></b>"
+        ),
+        "enabled_name": (
+            "<b>Die Uhr wurde erfolgreich auf den Nickname gesetzt <emoji document_id=5212932275376759608>✅</emoji></b>"
+        ),
+        "name_not_enabled": (
+            "<b>Die Uhr ist nicht auf den Spitznamen<emoji document_id=5215273032553078755>❎</emoji></b> eingestellt"
+        ),
+        "disabled_name": (
+            "<b>Nickzeit wurde erfolgreich deaktiviert <emoji document_id=5212932275376759608>✅</emoji></b>"
+        ),  
+        "_cfg_time": "Benutze die Zeitzone 1, -1, -3 usw.",
     }
 
     def __init__(self):

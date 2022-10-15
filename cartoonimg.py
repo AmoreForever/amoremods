@@ -8,6 +8,7 @@
 
 # meta developer: @amoremods
 # meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Cartoon.jpg
+
 __version__ = (1, 0, 0)
 
 import imghdr
@@ -45,6 +46,30 @@ class CartoonMod(loader.Module):
         ),
         "what": (
             "<emoji document_id=4920604831137137376>❔</emoji> Нет реплая или фото"
+        )
+    }
+
+    strings_uz = {
+        "processing": (
+            "<emoji document_id = 5787254181211409873>🖌</emoji><b > jarayon...</b>"
+        ),
+        "only_photo": (
+            "<emoji document_id=4920738602188538629>💬</emoji> fotosuratga reply"
+        ),
+        "what": (
+            "<emoji document_id=4920604831137137376 > ❔< / emoji > Reply yoki Photo yo'q"
+        )
+    }
+
+    strings_de = {
+        "processing": (
+            "<emoji document_id=5787254181211409873>🖌</emoji> <b>Prozess...</b>"
+        ),
+        "only_photo": (
+            "<emoji document_id=4920738602188538629>💬</emoji> Durch die Antwort auf das Foto"
+        ),
+        "what": (
+            "<emoji document_id=4920604831137137376>❔</emoji> Kein Replay oder Foto"
         )
     }
 
