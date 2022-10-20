@@ -23,13 +23,17 @@ class DTWRMod(loader.Module):
     strings = {
         "name": "DTWR",
         "text": "Your custom text",
-        "username": "Input you username without @",
+        "username": "Input you username without '@'",
     }
 
-    strings = {
-        "name": "DTWR",
+    strings_ru = {
         "text": "Кастомный текст",
-        "username": "Введи свой юзернэйм без @",
+        "username": "Введи свой юзернэйм без '@'",
+    }
+
+    strings_uz = {
+        "text": "Kastom text",
+        "username": "Usernameingizni kiriting, '@' siz"
     }
 
     def __init__(self):
@@ -51,9 +55,8 @@ class DTWRMod(loader.Module):
              """This module config"""
              name = self.strings("name")
              await self.allmodules.commands["config"](
-             await utils.answer(message, 
-             f"{self.get_prefix()}config {name}")
-             )
+                await utils.answer(message, f"{self.get_prefix()}config {name}")
+                )
 
     @loader.tag("only_messages", "only_groups", "in")
     async def watcher(self, message: Message):
@@ -71,4 +74,4 @@ class DTWRMod(loader.Module):
             await self._client.send_read_acknowledge(
                 message.chat_id,
                 clear_mentions=True,
-            )
+                )
