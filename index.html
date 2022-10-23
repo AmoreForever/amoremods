@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset='utf-8'>
     <meta property="og:type" content="website">
     <link rel="icon" href="https://te.legra.ph/file/605e03714ef7a5cab09e3.jpg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AmoreMods</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hubballi&display=swap');
@@ -14,6 +13,14 @@
             margin: 0;
             padding: 0;
             outline: 0;
+        }
+        
+        a.button8:hover {
+            background: rgba(255, 255, 255, .2);
+        }
+        
+        a.button8:active {
+            background: white;
         }
         
         body {
@@ -115,9 +122,9 @@
             display: block;
             height: 25px;
             border: 1px solid transparent;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            border-radius: 5px;
+            -webkit-border-radius: 100px;
+            -moz-border-radius: 100px;
+            border-radius: 100px;
             overflow: hidden;
             white-space: nowrap;
         }
@@ -133,36 +140,6 @@
             background: #ffffff5c;
             border-color: #ffffff84;
         }
-        
-        #search {
-            display: block;
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 90px;
-            -webkit-transition: width ease 0.2s, opacity ease 0.4s;
-            -moz-transition: width ease 0.2s, opacity ease 0.4s;
-            -webkit-border-radius: 32px;
-            -moz-border-radius: 32px;
-            -webkit-box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.25), inset 0px 1px 3px rgba(0, 0, 0, 0.7), 0px 1px 0px rgba(255, 0, 0, 0.03);
-            -moz-box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.25), inset 0px 1px 3px rgba(0, 0, 0, 0.7), 0px 1px 0px rgba(255, 255, 255, 0.03);
-            -webkit-font-smoothing: antialiased;
-            text-align: left;
-            font: 13px "Helvetica Neue", Arial, sans-serif;
-            padding: 4px 10px;
-            border: none;
-            background: transparent;
-            margin-bottom: 0;
-            outline: none;
-            opacity: 0.7;
-            color: rgb(255, 255, 255);
-        }
-        
-        #search:focus {
-            width: 120px;
-            opacity: 1.0;
-        }
-        /*views*/
         
         #files span {
             display: inline-block;
@@ -183,6 +160,8 @@
         .view-tiles .name {
             width: 100%;
             background-position: 8px 5px;
+            background-color: #ffffff4a;
+            border-radius: 50px;
         }
         
         .view-tiles .size,
@@ -195,6 +174,14 @@
             float: none;
             display: block;
             width: 90%;
+        }
+        
+        .lol {
+            display: block;
+            position: fixed;
+            top: 29px;
+            right: 225px;
+            width: 648px;
         }
         
         ul#files.view-details li.header {
@@ -232,22 +219,6 @@
             body {
                 font-size: 13px;
                 padding: 0;
-            }
-            #search {
-                position: static;
-                width: 100%;
-                font-size: 2em;
-                line-height: 1.8em;
-                text-indent: 10px;
-                border: 0;
-                border-radius: 0;
-                padding: 10px 0;
-                margin: 0;
-            }
-            #search:focus {
-                width: 100%;
-                border: 0;
-                opacity: 18;
             }
             .directory h1 {
                 font-size: 2em;
@@ -350,6 +321,7 @@
             return el;
         }
 
+
         function search() {
             var str = $('search').value.toLowerCase();
             var links = $('files').all('a');
@@ -380,33 +352,38 @@
 </head>
 
 <body class="directory">
-
-    <input id="search" type="text" placeholder="Search" autocomplete="off" />
+    <h1 class="lol">🌔 Official Amore Modules</h1>
     <div id="wrapper">
         <ul id="files" class="view-tiles">
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/abstract.py" class="icon icon icon-py" title="abstract.py"><span class="name">abstract.py</span><span class="size">1806</span><span class="date">01.10.2022 21:02:37</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/amoreinfo.py" class="icon icon icon-py" title="amoreinfo.py"><span class="name">amoreinfo.py</span><span class="size">9135</span><span class="date">16.10.2022 13:21:04</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/animevoices.py" class="icon icon icon-py" title="animevoices.py"><span class="name">animevoices.py</span><span class="size">14380</span><span class="date">16.10.2022 16:01:35</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/autoprofile.py" class="icon icon icon-py" title="autoprofile.py"><span class="name">autoprofile.py</span><span class="size">13099</span><span class="date">15.10.2022 14:42:39</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/bull.py" class="icon icon icon-py" title="bull.py"><span class="name">bull.py</span><span class="size">9751</span><span class="date">02.10.2022 08:48:30</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/cartoonimg.py" class="icon icon icon-py" title="cartoonimg.py"><span class="name">cartoonimg.py</span><span class="size">4620</span><span class="date">15.10.2022 14:43:45</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/createlinks.py" class="icon icon icon-py" title="createlinks.py"><span class="name">createlinks.py</span><span class="size">6360</span><span class="date">05.10.2022 21:54:42</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/dtwr.py" class="icon icon icon-py" title="dtwr.py"><span class="name">dtwr.py</span><span class="size">2409</span><span class="date">19.10.2022 09:42:19</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/facts.py" class="icon icon icon-py" title="facts.py"><span class="name">facts.py</span><span class="size">1698</span><span class="date">13.10.2022 15:56:29</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/funquotes.py" class="icon icon icon-py" title="funquotes.py"><span class="name">funquotes.py</span><span class="size">3144</span><span class="date">04.10.2022 20:20:27</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/hacker.py" class="icon icon icon-py" title="hacker.py"><span class="name">hacker.py</span><span class="size">2264</span><span class="date">04.10.2022 20:20:12</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/imgbb.py" class="icon icon icon-py" title="imgbb.py"><span class="name">imgbb.py</span><span class="size">3820</span><span class="date">01.10.2022 21:02:15</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/inlineping.py" class="icon icon icon-py" title="inlineping.py"><span class="name">inlineping.py</span><span class="size">2754</span><span class="date">15.10.2022 14:47:52</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/instsave.py" class="icon icon icon-py" title="instsave.py"><span class="name">instsave.py</span><span class="size">2064</span><span class="date">15.10.2022 14:48:27</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/meowvoices.py" class="icon icon icon-py" title="meowvoices.py"><span class="name">meowvoices.py</span><span class="size">3660</span><span class="date">01.10.2022 20:12:24</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/mydiary.py" class="icon icon icon-py" title="mydiary.py"><span class="name">mydiary.py</span><span class="size">13180</span><span class="date">01.10.2022 21:17:18</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/premiuminfo.py" class="icon icon icon-py" title="premiuminfo.py"><span class="name">premiuminfo.py</span><span class="size">5237</span><span class="date">02.10.2022 16:41:00</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/searchpic.py" class="icon icon icon-py" title="searchpic.py"><span class="name">searchpic.py</span><span class="size">1210</span><span class="date">01.10.2022 20:12:24</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/telegraphup.py" class="icon icon icon-py" title="telegraphup.py"><span class="name">telegraphup.py</span><span class="size">2482</span><span class="date">01.10.2022 21:00:34</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/trigger.py" class="icon icon icon-py" title="trigger.py"><span class="name">trigger.py</span><span class="size">2637</span><span class="date">11.10.2022 15:38:15</span></a></li>
-            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/universaltime.py" class="icon icon icon-py" title="universaltime.py"><span class="name">universaltime.py</span><span class="size">4296</span><span class="date">05.10.2022 21:31:28</span></a></li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/abstract.py" title="abstract.py"><span class="name">✍️ Abstract</span></a></li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/amoreinfo.py" title="amoreinfo.py"><span class="name">🔮 Amoreinfo</span></a></li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/animevoices.py title=" animevoices.py "><span class="name ">🎤 Animevoices</span></a></li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/autoprofile.py title="autoprofile.py"><span class="name">⌚ Autoprofile</span></a>
+            </li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/bull.py" title="bull.py"><span class="name">🤬 Bull</span></a></li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/cartoonimg.py title=" cartoonimg.py "><span class="name ">🐾 Cartoonimg</span></a></li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/createlinks.py "title="createlinks.py "><span class="name ">🌐 Createlinks</span></a></li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/dtwr.py title="dtwr.py"><span class="name">😫 Dtwr</span></a>
+            </li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/facts.py title=" facts.py "><span class="name ">💡 Facts</span></a></li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/funquotes.py "title="funquotes.py "><span class="name ">✨ Funquotes</span></a></li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/hacker.py title="hacker.py"><span class="name">☠️ Hacker</span></a>
+            </li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/imgbb.py" title="imgbb.py"><span class="name">📤 Imgbb</span></a></li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/inlineping.py title=" inlineping.py "><span class="name ">📟 Inlineping</span></a></li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/instsave.py title="instsave.py"><span class="name">📥 Instsave</span></a>
+            </li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/meowvoices.py" title="meowvoices.py"><span class="name">😸 Meowvoices</span></a></li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/mydiary.py title=" mydiary.py "><span class="name ">📖 Mydiary</span></a></li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/premiuminfo.py "title="premiuminfo.py "><span class="name ">⭐ Premiuminfo</span></a></li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/searchpic.py title="searchpic.py"><span class="name">🔎 Searchpic</span></a>
+            </li>
+            <li>
+                <a href="https://github.com/AmoreForever/amoremods/raw/master/telegraphup.py title=" telegraphup.py "><span class="name ">📤 Telegraphup</span></a></li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/trigger.py "title="trigger.py "><span class="name ">👾 Trigger</span></a></li>
+            <li><a href="https://github.com/AmoreForever/amoremods/raw/master/universaltime.py "title=" universaltime.py "><span class="name ">⏳ Universaltime</span></a>
+            </li>
         </ul>
     </div>
 </body>
-
 </html>
