@@ -9,7 +9,6 @@ __version__ = (1, 2, 0)
 # 🔒 Licensed under the GNU GPLv3
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
-
 # meta developer: @amoremods
 # meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Premiuminfo.jpg
 
