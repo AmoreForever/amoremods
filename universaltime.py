@@ -10,6 +10,7 @@
 
 # meta developer: @amoremods
 # meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Universaltime.jpg
+# @Den4ikSuperOstryyPer4ik: I Love AmoreMods :)
 
 
 from .. import loader, utils
