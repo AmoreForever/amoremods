@@ -12,7 +12,7 @@
 # meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Facts.jpg
 # channel @facti_p
 
-chat = "@facti_p"
+chat = "@faktiru"
 
 import datetime
 import random
