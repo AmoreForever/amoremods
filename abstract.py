@@ -18,7 +18,7 @@
 
 from .. import utils, loader
 
-chat = "@amoreconverterbot"
+chat = "@aeabstractbot"
 
 
 class AbstractMod(loader.Module):
