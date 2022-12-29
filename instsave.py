@@ -17,7 +17,7 @@ __version__ = (1, 0, 0)
 
 from .. import utils, loader
 
-chat = "@IsaversBot"
+chat = "@SaveAsBot"
 
 
 class InstagramMod(loader.Module):
