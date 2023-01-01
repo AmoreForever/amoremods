@@ -15,7 +15,7 @@ from .. import utils, loader
 import imghdr
 import io
 import random
-from telehon.tl.types import Message
+from telethon.tl.types import Message
 
 
 @loader.tds
