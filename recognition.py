@@ -19,7 +19,7 @@ from telethon.tl.types import Message
 
 
 @loader.tds
-class RekognMod(loader.Module):
+class RekognitionMod(loader.Module):
     """rekognition from photo"""
 
     async def get_media(self, message: Message):
