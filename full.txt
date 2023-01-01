@@ -18,5 +18,6 @@ hacker
 premiuminfo
 cartoonimg
 trigger
+recognition
 universaltime
 nytimer
