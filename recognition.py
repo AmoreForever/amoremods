@@ -1,4 +1,3 @@
-
 #           ▄▀█ █▀▄▀█ █▀█ █▀█ █▀▀
 #           █▀█ █░▀░█ █▄█ █▀▄ ██▄
 #
@@ -20,8 +19,13 @@ from telethon.tl.types import Message
 
 
 @loader.tds
-class RekognitionMod(loader.Module):
-    """rekognition from photo"""
+class RecognMod(loader.Module):
+    """Recognition from photo"""
+    
+    strings = {
+        'name': 'Recognition',
+        'args': "No args!"
+        }
 
     async def get_media(self, message: Message):
         reply = await message.get_reply_message()
@@ -31,7 +35,7 @@ class RekognitionMod(loader.Module):
         elif message.media:
             m = message
         elif not reply:
-            await utils.answer(message, self.strings("noargs"))
+            await utils.answer(message, self.strings('args'))
             return False
 
         if not m:
@@ -61,20 +65,19 @@ class RekognitionMod(loader.Module):
             return False
 
         if imghdr.what(file) not in ["gif", "png", "jpg", "jpeg", "tiff", "bmp"]:
-            await utils.answer(message, self.strings("not_an_image"))
             return False
-
         return file
 
     @loader.command()
-    async def reko(self, message: Message):
-        """rekognize from photo <reply to photo>"""
+    async def reco(self, message: Message):
+        """recognize from photo <reply to photo>"""
         file = await self.get_image(message)
         if not file:
             return False
         async with self._client.conversation("@Rekognition_Bot") as conv:
-            uph = await conv.send_message(file=file)
-            ph = await conv.get_response()
-            cp = await conv.get_response()
+            await conv.send_message(file=file) # upload step
+            await conv.get_response() # ignore message
+            cp = await conv.get_response() # get message
         
-        await self.client.send_photo(message.chat.id, photo=ph, caption=cp)
+        await utils.answer(message, cp)
+        await self.client.delete_dialog("@Rekognition_Bot")
