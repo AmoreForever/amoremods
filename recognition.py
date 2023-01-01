@@ -67,7 +67,7 @@ class RekognMod(loader.Module):
 
     @loader.command()
     async def reko(self, message: Message):
-        """rekognize from photo"""
+        """rekognize from photo <reply to photo>"""
         file = await self.get_image(message)
         if not file:
             return False
