@@ -19,7 +19,7 @@ from telethon.tl.types import Message
 
 
 @loader.tds
-class RecognMod(loader.Module):
+class RecognitionMod(loader.Module):
     """Recognition from photo"""
     
     strings = {
