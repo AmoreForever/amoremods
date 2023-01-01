@@ -1,3 +1,16 @@
+#           ▄▀█ █▀▄▀█ █▀█ █▀█ █▀▀
+#           █▀█ █░▀░█ █▄█ █▀▄ ██▄
+#
+#             © Copyright 2022
+#
+#          https://t.me/amorescam
+#
+# 🔒 Licensed under the GNU GPLv3
+# 🌐 https://www.gnu.org/licenses/agpl-3.0.html
+
+# meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/recognition.jpg
+# meta developer: @amoremods
+
 from .. import utils, loader
 import imghdr
 import io
