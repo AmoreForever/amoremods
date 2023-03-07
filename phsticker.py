@@ -17,14 +17,11 @@
 __version__ = (1, 0, 0)
 # meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/phstiker.jpg
 # meta developer: @amoremods
+# requires: phlogo
 
 import os
 from .. import loader, utils
-try:
-	from phlogo import generate
-except ModuleNotFoundError:
-	os.system("pip install phlogo")
-	from phlogo import generate
+from phlogo import generate
  
 @loader.tds
 class PhLogo(loader.Module):
@@ -60,7 +57,6 @@ class PhLogo(loader.Module):
         except:
             await utils.answer(message, self.strings('only_two'))
             return
-        await utils.answer(message, "`Making Sticker...`")
         result = generate(f"{p}",f"{h}")
         result.save("ph.webp")
         path = os.getcwd()
