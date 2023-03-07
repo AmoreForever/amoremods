@@ -1,5 +1,6 @@
 autoprofile
 animevoices
+phstiker
 amoreinfo
 abstract
 dtwr
