@@ -12,6 +12,7 @@ imgbb
 instsave
 telegraphup
 inlineping
+poststealer
 searchpic
 funquotes
 facts
