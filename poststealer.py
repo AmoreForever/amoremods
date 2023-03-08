@@ -96,9 +96,13 @@ class PostStealer(loader.Module):
                 if message.video:
                     await self._client.send_file(int(self.config['my_channel']), message.video, caption=message.text if text else None, link_preview=False)
                     logging.info(f'Stealed video from {steal}')
+                if message.document:
+                    await self._client.send_file(int(self.config['my_channel']), message.document, caption=message.text if text else None, link_preview=False)
+                    logging.info(f'Stealed file from {steal}')
                 elif message.text:
                     await message.client.send_message(int(self.config['my_channel']), message.text)
                     logging.info(f'Stealed message from {steal}')
+                
             else:
                 return False
 
