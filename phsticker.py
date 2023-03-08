@@ -61,6 +61,7 @@ class PhLogo(loader.Module):
         result.save("ph.webp")
         path = os.getcwd()
         stc = f"{path}/ph.webp"
+        await message.delete()
         await self._client.send_file(
             message.peer_id,
             stc,
