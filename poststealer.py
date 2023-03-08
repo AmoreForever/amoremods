@@ -21,9 +21,6 @@ __version__ = (1, 0, 0)
 
 
 from .. import loader, utils
-import logging
-
-logger = logging.getLogger(__name__)
 
 
 @loader.tds
@@ -37,7 +34,7 @@ class PostStealer(loader.Module):
         'channel': 'channel id where ub will steal messages',
         'my_channel': 'channel id where ub will send messages'
     }
-    
+
     strings_ru = {
         'enable': '<b>StealMod включен.</b>',
         'disable': '<b>StealMod отключен.</b>',
@@ -62,15 +59,15 @@ class PostStealer(loader.Module):
     async def client_ready(self, client, db):
         self.client = client
         self.db = db
-        
+
     @loader.command()
     async def smode(self, message):
         """- off/on steal mode"""
-        
+
         status = self.db.get(
-			"steal_status",
-			"status",
-		)
+            "steal_status",
+            "status",
+        )
         if status == "":
             self.db.set("steal_status", "status", True)
         if status == False:
@@ -79,7 +76,7 @@ class PostStealer(loader.Module):
         else:
             self.db.set("steal_status", "status", False)
             await utils.answer(message, self.strings("disable"))
-   
+
     async def watcher(self, message):
         """Лень писать описание"""
         status = self.db.get("steal_status", "status")
@@ -92,17 +89,11 @@ class PostStealer(loader.Module):
             if chatid == steal:
                 if message.photo:
                     await self._client.send_file(int(self.config['my_channel']), message.photo, caption=message.text if text else None, link_preview=False)
-                    logging.info(f'Stealed photo from {steal}')
-                if message.video:
+                elif message.video:
                     await self._client.send_file(int(self.config['my_channel']), message.video, caption=message.text if text else None, link_preview=False)
-                    logging.info(f'Stealed video from {steal}')
-                if message.document:
+                elif message.document:
                     await self._client.send_file(int(self.config['my_channel']), message.document, caption=message.text if text else None, link_preview=False)
-                    logging.info(f'Stealed file from {steal}')
                 elif message.text:
                     await message.client.send_message(int(self.config['my_channel']), message.text)
-                    logging.info(f'Stealed message from {steal}')
-                
             else:
                 return False
-
