@@ -118,11 +118,6 @@ class PremiumInfoMod(loader.Module):
             if "com.termux" in os.environ.get("PREFIX", "")
             else f"{platf} VDS"
             f"{platf} Goorm"
-            if "GOORM" in os.environ
-            else f"{platf} VDS"
-            f"{platf} Railway"
-            if "RAILWAY" in os.environ
-            else f"{platf} VDS"
         )
 
         hikka = (
