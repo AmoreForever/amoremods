@@ -117,7 +117,6 @@ class PremiumInfoMod(loader.Module):
             f"{platf} Termux"
             if "com.termux" in os.environ.get("PREFIX", "")
             else f"{platf} VDS"
-            f"{platf} Goorm"
         )
 
         hikka = (
