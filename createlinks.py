@@ -40,7 +40,7 @@ class AmorelinksMod(loader.Module):
 
     async def ytcmd(self, message):
         """<text> create YouTube link"""
-        text = utils.get_args_raw(message) 
+        text = utils.get_args_raw(message)
         s = f"<b>✏ Input word: <code>{text}</code></b>"
         if await self.allmodules.check_security(
             message,
@@ -50,10 +50,14 @@ class AmorelinksMod(loader.Module):
             try:
                 await self.inline.form(
                     self.strings("youtube", message) + s,
-                    reply_markup=[                        
-                        [{"text": "♨️ Link", "url": f"https://m.youtube.com/results?sp=mAEA&search_query={text}"}],
-                        [{"text": "🔻 Close", "action": f"close"}],
-                        
+                    reply_markup=[
+                        [
+                            {
+                                "text": "♨️ Link",
+                                "url": f"https://m.youtube.com/results?sp=mAEA&search_query={text}",
+                            }
+                        ],
+                        [{"text": "🔻 Close", "action": "close"}],
                     ],
                     message=message,
                 )
@@ -63,7 +67,7 @@ class AmorelinksMod(loader.Module):
 
     async def gugcmd(self, message):
         """<text> create Google link"""
-        text = utils.get_args_raw(message) 
+        text = utils.get_args_raw(message)
         s = f"<b>✏ Input word: <code>{text}</code></b>"
         if await self.allmodules.check_security(
             message,
@@ -74,8 +78,13 @@ class AmorelinksMod(loader.Module):
                 await self.inline.form(
                     self.strings("google", message) + s,
                     reply_markup=[
-                        [{"text": "🛰 Link", "url": f"https://www.google.com/search?q={text}"}],
-                        [{"text": "🔻 Close", "action": f"close"}],
+                        [
+                            {
+                                "text": "🛰 Link",
+                                "url": f"https://www.google.com/search?q={text}",
+                            }
+                        ],
+                        [{"text": "🔻 Close", "action": "close"}],
                     ],
                     message=message,
                 )
@@ -84,7 +93,7 @@ class AmorelinksMod(loader.Module):
                 
     async def ghcmd(self, message):
         """<text> create Github link"""
-        text = utils.get_args_raw(message) 
+        text = utils.get_args_raw(message)
         s = f"<b>✏ Input word: <code>{text}</code></b>"
         if await self.allmodules.check_security(
             message,
@@ -95,8 +104,13 @@ class AmorelinksMod(loader.Module):
                 await self.inline.form(
                     self.strings("github", message) + s,
                     reply_markup=[
-                        [{"text": "🛰 Link", "url": f"https://github.com/search?q={text}"}],
-                        [{"text": "🔻 Close", "action": f"close"}],
+                        [
+                            {
+                                "text": "🛰 Link",
+                                "url": f"https://github.com/search?q={text}",
+                            }
+                        ],
+                        [{"text": "🔻 Close", "action": "close"}],
                     ],
                     message=message,
                 )
@@ -105,7 +119,7 @@ class AmorelinksMod(loader.Module):
            
     async def phcmd(self, message):
         """<text> create PornHub link"""
-        text = utils.get_args_raw(message) 
+        text = utils.get_args_raw(message)
         s = f"<b>✏ Input word: <code>{text}</code></b>"
         if await self.allmodules.check_security(
             message,
@@ -116,8 +130,13 @@ class AmorelinksMod(loader.Module):
                 await self.inline.form(
                     self.strings("pornhub", message) + s,
                     reply_markup=[
-                        [{"text": "🛰 Link", "url": f"https://rt.pornhub.com/video/search?search={text}"}],
-                        [{"text": "🔻 Close", "action": f"close"}],
+                        [
+                            {
+                                "text": "🛰 Link",
+                                "url": f"https://rt.pornhub.com/video/search?search={text}",
+                            }
+                        ],
+                        [{"text": "🔻 Close", "action": "close"}],
                     ],
                     message=message,
                 )
@@ -126,7 +145,7 @@ class AmorelinksMod(loader.Module):
                 
     async def tgcmd(self, message):
         """<text> create Telegram link"""
-        text = utils.get_args_raw(message) 
+        text = utils.get_args_raw(message)
         s = f"<b>✏ Input word: <code>{text}</code></b>"
         if await self.allmodules.check_security(
             message,
@@ -138,7 +157,7 @@ class AmorelinksMod(loader.Module):
                     self.strings("telegram", message) + s,
                     reply_markup=[
                         [{"text": "🛰 Link", "url": f"tg://search?query={text}"}],
-                        [{"text": "🔻 Close", "action": f"close"}],
+                        [{"text": "🔻 Close", "action": "close"}],
                     ],
                     message=message,
                 )
@@ -147,7 +166,7 @@ class AmorelinksMod(loader.Module):
  
     async def pdacmd(self, message):
         """<text> create 4pda link"""
-        text = utils.get_args_raw(message) 
+        text = utils.get_args_raw(message)
         s = f"<b>✏ Input word: <code>{text}</code></b>"
         if await self.allmodules.check_security(
             message,
@@ -158,8 +177,13 @@ class AmorelinksMod(loader.Module):
                 await self.inline.form(
                     self.strings("4pda", message) + s,
                     reply_markup=[
-                        [{"text": "🛰 Link", "url": f"https://4pda.to/forum/index.php?act=search&source=all&forums=316&subforums=1&query={text}"}],
-                        [{"text": "🔻 Close", "action": f"close"}],
+                        [
+                            {
+                                "text": "🛰 Link",
+                                "url": f"https://4pda.to/forum/index.php?act=search&source=all&forums=316&subforums=1&query={text}",
+                            }
+                        ],
+                        [{"text": "🔻 Close", "action": "close"}],
                     ],
                     message=message,
                 )

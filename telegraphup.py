@@ -59,23 +59,17 @@ class Telegraphup(loader.Module):
 
 
 async def check_media(reply_message):
-    if reply_message and reply_message.media:
-        if reply_message.photo:
-            data = reply_message.photo
-        elif reply_message.document:
-            if (
-                DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
-                in reply_message.media.document.attributes
-            ):
-                return False
-            if reply_message.audio or reply_message.voice:
-                return False
-            data = reply_message.media.document
-        else:
+    if reply_message and reply_message.media and reply_message.photo:
+        data = reply_message.photo
+    elif reply_message and reply_message.media and reply_message.document:
+        if (
+            DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
+            in reply_message.media.document.attributes
+        ):
             return False
+        if reply_message.audio or reply_message.voice:
+            return False
+        data = reply_message.media.document
     else:
         return False
-    if not data or data is None:
-        return False
-    else:
-        return data
+    return False if not data or data is None else data

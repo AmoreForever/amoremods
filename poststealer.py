@@ -85,15 +85,14 @@ class PostStealer(loader.Module):
         if status == True:
             steal = self.config['channel']
             chatid = int(message.chat_id)
-            text = message.text
-            if chatid == steal:
-                if message.photo:
-                    await self._client.send_file(int(self.config['my_channel']), message.photo, caption=message.text if text else None, link_preview=False)
-                elif message.video:
-                    await self._client.send_file(int(self.config['my_channel']), message.video, caption=message.text if text else None, link_preview=False)
-                elif message.document:
-                    await self._client.send_file(int(self.config['my_channel']), message.document, caption=message.text if text else None, link_preview=False)
-                elif message.text:
-                    await message.client.send_message(int(self.config['my_channel']), message.text)
-            else:
+            if chatid != steal:
                 return False
+            text = message.text
+            if message.photo:
+                await self._client.send_file(int(self.config['my_channel']), message.photo, caption=message.text if text else None, link_preview=False)
+            elif message.video:
+                await self._client.send_file(int(self.config['my_channel']), message.video, caption=message.text if text else None, link_preview=False)
+            elif message.document:
+                await self._client.send_file(int(self.config['my_channel']), message.document, caption=message.text if text else None, link_preview=False)
+            elif message.text:
+                await message.client.send_message(int(self.config['my_channel']), message.text)

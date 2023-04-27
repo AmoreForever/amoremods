@@ -116,17 +116,17 @@ class PagesMod(loader.Module):
                 "button_numb_2",
                 "Day 2",
                 doc=lambda: self.strings('_cfg_button_2_'),
-            ),            
+            ),
             loader.ConfigValue(
                 "button_numb_3",
                 "Day 3",
                 doc=lambda: self.strings('_cfg_button_3_'),
-            ),            
+            ),
             loader.ConfigValue(
                 "button_numb_4",
                 "Day 4",
                 doc=lambda: self.strings('_cfg_button_4_'),
-            ),                        
+            ),
             loader.ConfigValue(
                 "text_numb_1",
                 "Today i played football with my friends then i fall,",
@@ -140,34 +140,34 @@ class PagesMod(loader.Module):
             loader.ConfigValue(
                 "text_numb_3",
                 "What are you did today?",
-                doc=lambda: self.strings('_cfdiary_three_text'),        
+                doc=lambda: self.strings('_cfdiary_three_text'),
             ),
             loader.ConfigValue(
                 "text_numb_4",
                 "What are you did today?",
                 doc=lambda: self.strings('_cfdiary_four_text'),
-            ),           
+            ),
             loader.ConfigValue(
                 "banner_numb_1",
                 "https://imgur.com/NqNGNOb",
-                lambda: f"here you can write on dairy photo1",
+                lambda: "here you can write on dairy photo1",
             ),
             loader.ConfigValue(
                 "banner_numb_2",
                 "https://ibb.co/ZJ9hnfL",
-                lambda: f"here you can write on dairy photo2",
+                lambda: "here you can write on dairy photo2",
             ),
             loader.ConfigValue(
                 "banner_numb_3",
                 "https://imgur.com/kITkUry",
-                lambda: f"here you can write on dairy photo3",
+                lambda: "here you can write on dairy photo3",
             ),
             loader.ConfigValue(
                 "banner_numb_4",
                 "https://imgur.com/TOzh9u1",
-                lambda: f"here you can write on dairy photo3",
+                lambda: "here you can write on dairy photo3",
             ),
-          )
+        )
     
     async def cfdiarycmd(self, message):
              """> Set up buttons for the module"""
