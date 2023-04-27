@@ -60,8 +60,7 @@ bullr = (
             )
 
 def bullme():
-    iwfy = random.choice(bullr)
-    return iwfy
+    return random.choice(bullr)
      
 @loader.tds
 class BullMod(loader.Module):

@@ -115,15 +115,11 @@ class ImgbbUploader(loader.Module):
             await response.delete()
 
             try:
-                url = (
-                    re.search(
-                        r'<meta property="og:image" data-react-helmet="true"'
-                        r' content="(.*?)"',
-                        (await utils.run_sync(requests.get, response.raw_text)).text,
-                    )
-                    .group(1)
-                    .split("?")[0]
-                )
+                url = re.search(
+                    r'<meta property="og:image" data-react-helmet="true"'
+                    r' content="(.*?)"',
+                    (await utils.run_sync(requests.get, response.raw_text)).text,
+                )[1].split("?")[0]
             except Exception:
                 url = response.raw_text
             await utils.answer(message, f"😸 Your file uploaded: <code>{url}</code>")

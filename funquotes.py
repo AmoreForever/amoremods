@@ -91,7 +91,7 @@ class InlineFunMod(loader.Module):
         await message.edit(self.strings("processing"))
 
         try:
-            query = await self._client.inline_query("@honka_says_bot", text + ".")
+            query = await self._client.inline_query("@honka_says_bot", f"{text}.")
             await message.respond(file=query[0].document)
         except Exception as e:
             await utils.answer(message, str(e))
