@@ -1,5 +1,6 @@
 autoprofile
 animevoices
+activity
 phsticker
 amoreinfo
 abstract
