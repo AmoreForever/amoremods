@@ -23,7 +23,7 @@ from .. import loader, utils
 
 
 def generate_activity():
-    return requests.get("http://api.farkhodovme.tk:1234/activity/en").json()['activity']
+    return requests.get("http://api.farkhodovme.tk/activity/en").json()['activity']
 
 
 class Activity(loader.Module):
