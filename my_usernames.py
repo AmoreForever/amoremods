@@ -15,6 +15,7 @@ from .. import loader, utils
 class MyUsernames(loader.Module):
     """The usernames I own"""
     
+    strings = {"name": "My Usernames"}
     @loader.command()
     async def myusern(self, message):
         """A list of usernames that were created by me"""

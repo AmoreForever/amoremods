@@ -18,6 +18,7 @@ from .. import loader, utils
 class Figlet(loader.Module):
     """Creates Figlet Text"""
 
+    strings = {"name": "Figlet"}
     style_to_font = {
         "slant": "slant",
         "3d": "3-d",
