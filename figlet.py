@@ -45,16 +45,16 @@ class Figlet(loader.Module):
         """Create figlet text, <style> | <args>"""
         args = utils.get_args_raw(message).split(" | ")
         if len(args) < 2:
-            await utils.answer("Not enough arguments")
+            await utils.answer(message, "Not enough arguments")
             return
 
         font = self.style_to_font.get(args[0], None)
         if font is None:
-            await utils.answer("There is no such style")
+            await utils.answer(message, "There is no such style")
             return
 
         if not args[1]:
-            await utils.answer("Text argument is empty")
+            await utils.answer(message, "Text argument is empty")
             return
 
         result = await self.figlet_format_cached(args[1], font)
