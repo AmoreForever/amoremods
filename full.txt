@@ -24,3 +24,4 @@ trigger
 recognition
 universaltime
 nytimer
+figlet
