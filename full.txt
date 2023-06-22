@@ -25,5 +25,6 @@ recognition
 universaltime
 nytimer
 figlet
+fileext
 my_usernames
 fragment_checker
