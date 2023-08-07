@@ -98,14 +98,17 @@ class Amethyste(loader.Module):
             return await utils.answer(message, self.strings["not_found"])
         async with self.client.conversation(6224613576) as conv:
             try:
+                msg = await conv.send_message("/start")
                 f = await conv.send_file(file=reply)
-                await f.reply(f"/amegen {args}")
+                m = await f.reply(f"/amegen {args}")
                 await conv.get_response() # wait for response
                 response = await conv.get_response()
                 await utils.answer_file(message, response.media)
+                await msg.delete()
+                await m.delete()
             except AlreadyInConversationError:
                 await utils.answer(message, self.strings["already_open"])
-        await self.client.delete_dialog(6224613576)
+        await self.client.delete_dialog("@aozoram_bot")
                 
                 
     async def amelistcmd(self, message: Message):
