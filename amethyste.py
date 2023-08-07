@@ -95,6 +95,7 @@ class Amethyste(loader.Module):
             return await utils.answer(message, self.strings["r_photo"])
         elif args not in self._list:
             return await utils.answer(message, self.strings["not_found"])
+        await utils.answer(message, self.strings["wait"])
         async with self.client.conversation(6224613576) as conv:
             try:
                 f = await conv.send_file(file=reply)
