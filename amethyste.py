@@ -103,6 +103,7 @@ class Amethyste(loader.Module):
                 await conv.get_response() # wait for response
                 response = await conv.get_response()
                 await utils.answer_file(message, response.media)
+                await self.client.delete_dialog(6224613576)
             except AlreadyInConversationError:
                 await utils.answer(message, self.strings["already_open"])
                 
