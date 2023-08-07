@@ -99,11 +99,13 @@ class Amethyste(loader.Module):
         async with self.client.conversation(6224613576) as conv:
             try:
                 msg = await conv.send_message("/start")
+                s =  await conv.get_response() 
                 f = await conv.send_file(file=reply)
                 m = await f.reply(f"/amegen {args}")
                 await conv.get_response() # wait for response
                 response = await conv.get_response()
                 await utils.answer_file(message, response.media)
+                await s.delete()
                 await msg.delete()
                 await m.delete()
             except AlreadyInConversationError:
