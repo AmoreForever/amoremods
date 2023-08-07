@@ -89,13 +89,13 @@ class Amethyste(loader.Module):
         """Generate memes image"""
         reply = await message.get_reply_message()
         args = utils.get_args_raw(message)
+        await utils.answer(message, self.strings["wait"])
         if not args:
             return await utils.answer(message, self.strings["no_args"])
         elif not reply.photo:
             return await utils.answer(message, self.strings["r_photo"])
         elif args not in self._list:
             return await utils.answer(message, self.strings["not_found"])
-        await utils.answer(message, self.strings["wait"])
         async with self.client.conversation(6224613576) as conv:
             try:
                 f = await conv.send_file(file=reply)
@@ -103,9 +103,9 @@ class Amethyste(loader.Module):
                 await conv.get_response() # wait for response
                 response = await conv.get_response()
                 await utils.answer_file(message, response.media)
-                await self.client.delete_dialog(6224613576)
             except AlreadyInConversationError:
                 await utils.answer(message, self.strings["already_open"])
+        await self.client.delete_dialog(6224613576)
                 
                 
     async def amelistcmd(self, message: Message):
