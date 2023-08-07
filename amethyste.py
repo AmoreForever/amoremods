@@ -24,8 +24,8 @@ class Amethyste(loader.Module):
         "r_photo": "<emoji document_id=5298636457982826800>🖼</emoji> <b>Please reply to image.</b>",
         "no_args": "<emoji document_id=5877477244938489129>🚫</emoji> <b>Pls provide args</b>",
         "not_found": "<emoji document_id=5345937796102104039>🤷‍♀️</emoji> <b>Not found</b>",
-        }
-    
+    }
+
     strings_ru = {
         "wait": "<emoji document_id=5328115567314346398>🫥</emoji> <b>Подождите...</b>",
         "already_open": "<emoji document_id=5330241494521487534>😹</emoji> <b>Диалог уже открыт. Подождите.</b>",
@@ -33,15 +33,15 @@ class Amethyste(loader.Module):
         "no_args": "<emoji document_id=5877477244938489129>🚫</emoji> <b>Укажите аргументы</b>",
         "not_found": "<emoji document_id=5345937796102104039>🤷‍♀️</emoji> <b>Не найдено</b>",
     }
-    
+
     strings_uz = {
         "wait": "<emoji document_id=5328115567314346398>🫥</emoji> <b>Kuting...</b>",
         "already_open": "<emoji document_id=5330241494521487534>😹</emoji> <b>Dialog allaqachon ochilgan. Iltimos, kuting.</b>",
         "r_photo": "<emoji document_id=5298636457982826800>🖼</emoji> <b>Rasmga javob bering.</b>",
         "no_args": "<emoji document_id=5877477244938489129>🚫</emoji> <b>Argumetlarni ko'rsating</b>",
-        "not_found": "<emoji document_id=5345937796102104039>🤷‍♀️</emoji> <b>Topilmadi</b>"
+        "not_found": "<emoji document_id=5345937796102104039>🤷‍♀️</emoji> <b>Topilmadi</b>",
     }
-    
+
     _list = [
         "3000years",
         "approved",
@@ -84,7 +84,7 @@ class Amethyste(loader.Module):
         "wanted",
         "wasted",
     ]
-    
+
     async def amegencmd(self, message: Message):
         """Generate memes image"""
         reply = await message.get_reply_message()
@@ -96,13 +96,13 @@ class Amethyste(loader.Module):
             return await utils.answer(message, self.strings["r_photo"])
         elif args not in self._list:
             return await utils.answer(message, self.strings["not_found"])
-        async with self.client.conversation(6224613576) as conv:
+        async with self.client.conversation("@aozoram_bot") as conv:
             try:
                 msg = await conv.send_message("/start")
-                s =  await conv.get_response() 
+                s = await conv.get_response()
                 f = await conv.send_file(file=reply)
                 m = await f.reply(f"/amegen {args}")
-                await conv.get_response() # wait for response
+                await conv.get_response()  # wait for response
                 response = await conv.get_response()
                 await utils.answer_file(message, response.media)
                 await s.delete()
@@ -111,11 +111,8 @@ class Amethyste(loader.Module):
             except AlreadyInConversationError:
                 await utils.answer(message, self.strings["already_open"])
         await self.client.delete_dialog("@aozoram_bot")
-                
-                
+
     async def amelistcmd(self, message: Message):
         """List of memes"""
         spis = "\n".join([f"• <code>{i}</code>" for i in self._list])
         await utils.answer(message, f"<b>Available memes:</b>\n\n{spis}")
-            
-    
