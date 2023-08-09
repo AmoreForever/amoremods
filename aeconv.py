@@ -139,7 +139,7 @@ class Aeconv(loader.Module):
         }
     
     currencies = [
-        "EUR", "GBP", "UZS", "USD", "RUB", "KZT", "UAH", "PLN", "TRY", "KGS"
+        "EUR", "GBP", "UZS", "USD", "RUB", "KZT", "UAH", "PLN", "TRY", "KGS", "TON", "ETH", "BTC"
     ]
     
     currency_flags = {
@@ -173,7 +173,7 @@ class Aeconv(loader.Module):
                     "callback": self.callback_4_currency,
                     "args": (cur,)
                 }
-                for cur in self.currencies
+                for cur in [i for i in self.currency_flags.keys() if i.startswith(argument.upper())]
                 if cur.startswith(argument.upper())
                 ],
             5,
@@ -204,8 +204,8 @@ class Aeconv(loader.Module):
     async def callback_4_currency(self, call: InlineCall, currency: str):
         try:
             first_letter = currency[0]
+            await call.answer(self.strings["processing"], show_alert=True)
             await call.delete()
-            await call.answer(self.strings["processing"])
             async with self.client.conversation(self.bot) as conv:
                 m = await conv.send_message("/settings")
                 r = await conv.get_response()
@@ -217,7 +217,7 @@ class Aeconv(loader.Module):
                 await m.delete()
             await self.inline.bot.send_message(self.tg_id, self.strings["done"])
         except AlreadyInConversationError:
-            await call.answer(self.strings["already_in_conv"])
+            await call.answer(self.strings["already_in_conv"], show_alert=True)
         
     @loader.command(ru_doc="<количество> [валюта] должны быть разделены пробелом")    
     async def conv(self, message: Message):
