@@ -73,7 +73,7 @@ class Aeconv(loader.Module):
         "wrong_currency": "<emoji document_id=5345937796102104039>🤷‍♀️</emoji><b> Yanlış para birimi</b>",
     }
     
-    strings_kz = { # i'm really sorry for translations, i'm not good at it
+    strings_kk   = { # i'm really sorry for translations, i'm not good at it
         "wait": "<emoji document_id=5346192260029489215>💵</emoji> <b>Валюта айырбасталуда...</b>",
         "no_args": "<emoji document_id=5343820329980535275>🖕</emoji> <b>Аргументтер қайда?</b>",
         "unsupported": "<emoji document_id=5307761055873638139>🚫</emoji> <b>Валюта қолдау көрсетілмейді!</b>",
