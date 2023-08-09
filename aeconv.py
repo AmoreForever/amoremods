@@ -173,9 +173,10 @@ class Aeconv(loader.Module):
                 res = r.text
                 text_ = ""
                 text_ += self.strings["converted"].format(args) if "ton".lower() not in args.lower() else self.strings["converted"].format(li_args[0] + " TON")
-                for code, (emoji, currency) in self.currency_mapping.items():
+                for emoji, currency in self.currency_mapping.values():
                     if match := re.findall(f"{emoji} ?(.*) {currency}", res):
-                        text_ += f"<b>{emoji} {currency}:</b> <code>{match[0]}</code>\n"
+                        text_ += f"<b>{self.custom_emojis.get(emoji)} {currency}:</b> <code>{match[0]}</code>\n"
+
 
                 if match := re.findall(r"(.*) BTC", res):
                     text_ += f"\n<b>{self.custom_emojis['bit']} BTC:</b> <code>{match[0]}</code>\n"
