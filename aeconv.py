@@ -169,30 +169,36 @@ class Aeconv(loader.Module):
         return utils.chunks(
             [
                 {
-                    "text": "{} {}".format(self.currency_flags[cur], cur),
+                    "text": f"{self.currency_flags[cur]} {cur}",
                     "callback": self.callback_4_currency,
-                    "args": (cur,)
+                    "args": (cur,),
                 }
-                for cur in [i for i in self.currency_flags.keys() if i.startswith(argument.upper())]
+                for cur in [
+                    i
+                    for i in self.currency_flags.keys()
+                    if i.startswith(argument.upper())
+                ]
                 if cur.startswith(argument.upper())
-                ],
+            ],
             5,
-            )
+        )
     
     async def client_ready(self, client, db):
         await utils.dnd(client, self.bot, archive=True)
     
     async def get_ton_in_rub(self, am, what: str = "uzs", cup: bool = False) -> str:
-        r = get("https://coinchefs.com/{}/ton/{}/".format(what, am)) if cup else get("https://coinchefs.com/ton/{}/{}/".format(what, am))
+        r = (
+            get(f"https://coinchefs.com/{what}/ton/{am}/")
+            if cup
+            else get(f"https://coinchefs.com/ton/{what}/{am}/")
+        )
         soup = bs(r.text, "html.parser")
-        result_div = soup.find('div', class_='convert-result')
-        if result_div:
-            result_text_div = result_div.find('div', class_='col-xs-10 col-sm-10 text-center result-text')
-            if result_text_div:
-                value_element = result_text_div.b
-                if value_element:
-                    value = value_element.get_text(strip=True)
-                    return value
+        if result_div := soup.find('div', class_='convert-result'):
+            if result_text_div := result_div.find(
+                'div', class_='col-xs-10 col-sm-10 text-center result-text'
+            ):
+                if value_element := result_text_div.b:
+                    return value_element.get_text(strip=True)
                 else:
                     logger.debug("Value element not found")
             else:
@@ -219,7 +225,7 @@ class Aeconv(loader.Module):
         except AlreadyInConversationError:
             await call.answer(self.strings["already_in_conv"], show_alert=True)
         
-    @loader.command(ru_doc="<количество> [валюта] должны быть разделены пробелом")    
+    @loader.command(ru_doc="<количество> [валюта] должны быть разделены пробелом")
     async def conv(self, message: Message):
         """<amount> [currency] should be separated by space"""
         args = utils.get_args_raw(message)
@@ -239,7 +245,11 @@ class Aeconv(loader.Module):
                 r = await conv.get_response()
                 res = r.text
                 text_ = ""
-                text_ += self.strings["converted"].format(args) if "ton".lower() not in args.lower() else self.strings["converted"].format(li_args[0] + " TON")
+                text_ += (
+                    self.strings["converted"].format(args)
+                    if "ton".lower() not in args.lower()
+                    else self.strings["converted"].format(f"{li_args[0]} TON")
+                )
                 for emoji, currency, *_ in self.currency_mapping.values():
                     if match := re.findall(f"{emoji} ?(.*) {currency}", res):
                         text_ += (
@@ -265,13 +275,13 @@ class Aeconv(loader.Module):
             await utils.answer(message, self.strings["no_args"])
             
             
-    @loader.command(ru_doc="[валюта] | без аргументов покажет список валют")
+    @loader.command(ru_doc="[валюта] | без аргументов покажет список валют для включения/выключения")
     async def controlvalute(self, message: Message):
-        """[currency] | without arguments will show list of currencies"""
-        args = utils.get_args_raw(message)
-        if not args:
+        """[currency] | without arguments will show list of currencies for enable/disable"""
+        if args := utils.get_args_raw(message):
+            await utils.answer(message, self.strings["choose_currency"], reply_markup=self.currencies_markup(args))
+        else:
             return await utils.answer(message, self.strings["choose_currency"], reply_markup=self.currencies_markup())
-        await utils.answer(message, self.strings["choose_currency"], reply_markup=self.currencies_markup(args))
                     
             
         
