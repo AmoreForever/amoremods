@@ -51,7 +51,7 @@ class Aeconv(loader.Module):
         "already": "<emoji document_id=5348177037431414677>⚠️</emoji> <b>Подожди пока бот ответит!</b>",
         "wrong_currency": "<emoji document_id=5345937796102104039>🤷‍♀️</emoji><b> Неправильная валюта</b>",
         "choose_currency": "📉 <b> Выберите валюту</b>",
-        "processing": "🕔 <b>Обрабатываю...</b>",
+        "processing": "🕔 Обрабатываю...",
         "done": "<code>[Aeconv]</code> ✅ <b> Готово!</b>",
         "already_in_conv": "⚠️ <b>Жди пока закончится процесс!</b>",
     }
@@ -64,7 +64,7 @@ class Aeconv(loader.Module):
         "already": "<emoji document_id=5348177037431414677>⚠️</emoji> <b>Bot javob berishini kuting!</b>",
         "wrong_currency": "<emoji document_id=5345937796102104039>🤷‍♀️</emoji><b> Noto'g'ri valyuta</b>",
         "choose_currency": "📉 <b> Valyutani tanlang</b>",
-        "processing": "🕔 <b>Qayta ishlayapman...</b>",
+        "processing": "🕔 Qayta ishlayapman...",
         "done": "<code>[Aeconv]</code> ✅ <b>Tayyor!</b>",
         "already_in_conv": "⚠️ <b>Protsess tugaguncha kuting!</b>",
     }
@@ -77,7 +77,7 @@ class Aeconv(loader.Module):
         "already": "<emoji document_id=5348177037431414677>⚠️</emoji> <b>Warten Sie, bis der Bot antwortet!</b>",
         "wrong_currency": "<emoji document_id=5345937796102104039>🤷‍♀️</emoji><b> Falsche Währung</b>",
         "choose_currency": "📉 <b> Währung auswählen</b>",
-        "processing": "🕔 <b>Verarbeitung...</b>",
+        "processing": "🕔 Verarbeitung...",
         "done": "<code>[Aeconv]</code> ✅ <b>Fertig!</b>",
         "already_in_conv": "⚠️ <b>Warten Sie, bis der Prozess beendet ist!</b>",
         
@@ -91,7 +91,7 @@ class Aeconv(loader.Module):
         "already": "<emoji document_id=5348177037431414677>⚠️</emoji> <b>Bot cevap verene kadar bekleyin!</b>",
         "wrong_currency": "<emoji document_id=5345937796102104039>🤷‍♀️</emoji><b> Yanlış para birimi</b>",
         "choose_currency": "📉 <b> Para birimini seçin</b>",
-        "processing": "🕔 <b>İşleniyor...</b>",
+        "processing": "🕔 İşleniyor...",
         "done": "<code>[Aeconv]</code> ✅ <b>Tamam!</b>",
         "already_in_conv": "⚠️ <b>İşlem bitene kadar bekleyin!</b>",
     }
@@ -104,7 +104,7 @@ class Aeconv(loader.Module):
         "already": "<emoji document_id=5348177037431414677>⚠️</emoji> <b>Бот жауап бергенге дейін күтіңіз!</b>",
         "wrong_currency": "<emoji document_id=5345937796102104039>🤷‍♀️</emoji><b> Дұрыс валюта емес</b>",
         "choose_currency": "📉 <b> Валютаны таңдаңыз</b>",
-        "processing": "🕔 <b>Қайта өңдеу...</b>",
+        "processing": "🕔 Қайта өңдеу...",
         "done": "<code>[Aeconv]</code>  ✅ <b>Тайық!</b>",
         "already_in_conv": "⚠️ <b>Процесс аяқталғанда дейін күтіңіз!</b>",
     }
@@ -204,6 +204,7 @@ class Aeconv(loader.Module):
     async def callback_4_currency(self, call: InlineCall, currency: str):
         try:
             first_letter = currency[0]
+            await call.delete()
             await call.answer(self.strings["processing"])
             async with self.client.conversation(self.bot) as conv:
                 m = await conv.send_message("/settings")
