@@ -14,11 +14,13 @@ import logging
 
 from bs4 import BeautifulSoup as bs
 from requests import get
+from asyncio import sleep
 from asyncio.exceptions import TimeoutError
 from hikkatl.tl.types import Message
 from hikkatl.errors.common import AlreadyInConversationError
 
 from .. import utils, loader
+from ..inline.types import InlineCall
 
 logger = logging.getLogger(__name__)
 
@@ -35,6 +37,10 @@ class Aeconv(loader.Module):
         "converted": "<emoji document_id=6037400506823871682>💸</emoji> <b>Converted <code>{}</code></b>\n\n",
         "already": "<emoji document_id=5348177037431414677>⚠️</emoji> <b>Wait until the bot responds!</b>",
         "wrong_currency": "<emoji document_id=5345937796102104039>🤷‍♀️</emoji><b> Wrong currency</b>",
+        "choose_currency": "📉 <b> Choose currency</b>",
+        "processing": "🕔 <b>Processing...</b>",
+        "done": "✅ <b>Done!</b>",
+        "already_in_conv": "⚠️ <b>Already in conversation!</b>",
         }
     
     strings_ru = {
@@ -44,6 +50,10 @@ class Aeconv(loader.Module):
         "converted": "<emoji document_id=6037400506823871682>💸</emoji> <b>Сконвертирован <code>{}</code></b>\n\n",
         "already": "<emoji document_id=5348177037431414677>⚠️</emoji> <b>Подожди пока бот ответит!</b>",
         "wrong_currency": "<emoji document_id=5345937796102104039>🤷‍♀️</emoji><b> Неправильная валюта</b>",
+        "choose_currency": "📉 <b> Выберите валюту</b>",
+        "processing": "🕔 <b>Обрабатываю...</b>",
+        "done": "<code>[Aeconv]</code> ✅ <b> Готово!</b>",
+        "already_in_conv": "⚠️ <b>Жди пока закончится процесс!</b>",
     }
     
     strings_uz = {
@@ -53,6 +63,10 @@ class Aeconv(loader.Module):
         "converted": "<emoji document_id=6037400506823871682>💸</emoji> <b>Konvertatsiya qilindi <code>{}</code></b>\n\n",
         "already": "<emoji document_id=5348177037431414677>⚠️</emoji> <b>Bot javob berishini kuting!</b>",
         "wrong_currency": "<emoji document_id=5345937796102104039>🤷‍♀️</emoji><b> Noto'g'ri valyuta</b>",
+        "choose_currency": "📉 <b> Valyutani tanlang</b>",
+        "processing": "🕔 <b>Qayta ishlayapman...</b>",
+        "done": "<code>[Aeconv]</code> ✅ <b>Tayyor!</b>",
+        "already_in_conv": "⚠️ <b>Protsess tugaguncha kuting!</b>",
     }
     
     strings_de = { # i'm really sorry for translations, i'm not good at it
@@ -62,6 +76,11 @@ class Aeconv(loader.Module):
         "converted": "<emoji document_id=6037400506823871682>💸</emoji> <b>Konvertiert <code>{}</code></b>\n\n",
         "already": "<emoji document_id=5348177037431414677>⚠️</emoji> <b>Warten Sie, bis der Bot antwortet!</b>",
         "wrong_currency": "<emoji document_id=5345937796102104039>🤷‍♀️</emoji><b> Falsche Währung</b>",
+        "choose_currency": "📉 <b> Währung auswählen</b>",
+        "processing": "🕔 <b>Verarbeitung...</b>",
+        "done": "<code>[Aeconv]</code> ✅ <b>Fertig!</b>",
+        "already_in_conv": "⚠️ <b>Warten Sie, bis der Prozess beendet ist!</b>",
+        
     }
     
     strings_tr = { # i'm really sorry for translations, i'm not good at it
@@ -71,6 +90,10 @@ class Aeconv(loader.Module):
         "converted": "<emoji document_id=6037400506823871682>💸</emoji> <b>Dönüştürüldü <code>{}</code></b>\n\n",
         "already": "<emoji document_id=5348177037431414677>⚠️</emoji> <b>Bot cevap verene kadar bekleyin!</b>",
         "wrong_currency": "<emoji document_id=5345937796102104039>🤷‍♀️</emoji><b> Yanlış para birimi</b>",
+        "choose_currency": "📉 <b> Para birimini seçin</b>",
+        "processing": "🕔 <b>İşleniyor...</b>",
+        "done": "<code>[Aeconv]</code> ✅ <b>Tamam!</b>",
+        "already_in_conv": "⚠️ <b>İşlem bitene kadar bekleyin!</b>",
     }
     
     strings_kk   = { # i'm really sorry for translations, i'm not good at it
@@ -80,6 +103,10 @@ class Aeconv(loader.Module):
         "converted": "<emoji document_id=6037400506823871682>💸</emoji> <b>Айырбасталды <code>{}</code></b>\n\n",
         "already": "<emoji document_id=5348177037431414677>⚠️</emoji> <b>Бот жауап бергенге дейін күтіңіз!</b>",
         "wrong_currency": "<emoji document_id=5345937796102104039>🤷‍♀️</emoji><b> Дұрыс валюта емес</b>",
+        "choose_currency": "📉 <b> Валютаны таңдаңыз</b>",
+        "processing": "🕔 <b>Қайта өңдеу...</b>",
+        "done": "<code>[Aeconv]</code>  ✅ <b>Тайық!</b>",
+        "already_in_conv": "⚠️ <b>Процесс аяқталғанда дейін күтіңіз!</b>",
     }
     
     custom_emojis = {
@@ -108,27 +135,49 @@ class Aeconv(loader.Module):
         "UA": ("🇺🇦", "UAH"),
         "PL": ("🇵🇱", "PLN"),
         "TR": ("🇹🇷", "TRY"),
-        "KG": ("🇰🇬", "KGS")}
+        "KG": ("🇰🇬", "KGS")
+        }
     
     currencies = [
-        "AED", "AFN", "ALL", "AMD", "ANG", "AOA", "ARS", "AUD", "AWG", "AZN",
-        "BAM", "BBD", "BDT", "BGN", "BHD", "BIF", "BMD", "BND", "BOB", "BRL",
-        "BSD", "BTC", "BTN", "BWP", "BYN", "BZD", "CAD", "CDF", "CHF", "CLF",
-        "CLP", "CNH", "CNY", "COP", "CRC", "CUC", "CUP", "CVE", "CZK", "DJF",
-        "DKK", "DOP", "DZD", "EGP", "ERN", "ETB", "EUR", "FJD", "FKP", "GBP",
-        "GEL", "GGP", "GHS", "GIP", "GMD", "GNF", "GTQ", "GYD", "HKD", "HNL",
-        "HRK", "HTG", "HUF", "IDR", "ILS", "IMP", "INR", "IQD", "IRR", "ISK",
-        "JEP", "JMD", "JOD", "JPY", "KES", "KGS", "KHR", "KMF", "KPW", "KRW",
-        "KWD", "KYD", "KZT", "LAK", "LBP", "LKR", "LRD", "LSL", "LYD", "MAD",
-        "MDL", "MGA", "MKD", "MMK", "MNT", "MOP", "MRO", "MRU", "MUR", "MVR",
-        "MWK", "MXN", "MYR", "MZN", "NAD", "NGN", "NIO", "NOK", "NPR", "NZD",
-        "OMR", "PAB", "PEN", "PGK", "PHP", "PKR", "PLN", "PYG", "QAR", "RON",
-        "RSD", "RUB", "RWF", "SAR", "SBD", "SCR", "SDG", "SEK", "SGD", "SHP",
-        "SLL", "SOS", "SRD", "SSP", "STN", "SVC", "SYP", "SZL", "THB", "TJS",
-        "TMT", "TND", "TOP", "TRY", "TTD", "TWD", "TZS", "UAH", "UGX", "USD",
-        "UYU", "UZS", "VEF", "VES", "VND", "VUV", "WST", "XAF", "XCD", "XDR",
-        "XOF", "XPF", "YER", "ZAR", "ZMW", "ZWL", "TON", "ETH", "BTC"
+        "EUR", "GBP", "UZS", "USD", "RUB", "KZT", "UAH", "PLN", "TRY", "KGS"
     ]
+    
+    currency_flags = {
+        "EUR": "🇪🇺",
+        "GBP": "🇬🇧",
+        "UZS": "🇺🇿",
+        "USD": "🇺🇸",
+        "RUB": "🇷🇺",
+        "KZT": "🇰🇿",
+        "UAH": "🇺🇦",
+        "PLN": "🇵🇱",
+        "TRY": "🇹🇷",
+        "KGS": "🇰🇬"
+    }
+    
+    letters_stashing = {
+        "E": "cur_df",
+        "G": "cur_gh", 
+        "P": "cur_nq",
+        "R": "cur_rs",
+        "S": "cur_rs",
+        "T": "cur_tu",
+        "U": "cur_tu",
+    }
+    
+    def currencies_markup(self, argument: str = "") -> list:
+        return utils.chunks(
+            [
+                {
+                    "text": "{} {}".format(self.currency_flags[cur], cur),
+                    "callback": self.callback_4_currency,
+                    "args": (cur,)
+                }
+                for cur in self.currencies
+                if cur.startswith(argument.upper())
+                ],
+            5,
+            )
     
     async def client_ready(self, client, db):
         await utils.dnd(client, self.bot, archive=True)
@@ -152,6 +201,23 @@ class Aeconv(loader.Module):
             logger.debug("Result div not found")
         return None
 
+    async def callback_4_currency(self, call: InlineCall, currency: str):
+        try:
+            first_letter = currency[0]
+            await call.answer(self.strings["processing"])
+            async with self.client.conversation(self.bot) as conv:
+                m = await conv.send_message("/settings")
+                r = await conv.get_response()
+                await r.click(data=b'cur_menu')
+                await r.click(data=b'cur_curmenu')
+                await r.click(data=self.letters_stashing[first_letter])
+                await r.click(data=f"cur_{currency.upper()}")
+                await r.delete()
+                await m.delete()
+            await self.inline.bot.send_message(self.tg_id, self.strings["done"])
+        except AlreadyInConversationError:
+            await call.answer(self.strings["already_in_conv"])
+        
     @loader.command(ru_doc="<количество> [валюта] должны быть разделены пробелом")    
     async def conv(self, message: Message):
         """<amount> [currency] should be separated by space"""
@@ -173,10 +239,12 @@ class Aeconv(loader.Module):
                 res = r.text
                 text_ = ""
                 text_ += self.strings["converted"].format(args) if "ton".lower() not in args.lower() else self.strings["converted"].format(li_args[0] + " TON")
-                for emoji, currency in self.currency_mapping.values():
+                for emoji, currency, *_ in self.currency_mapping.values():
                     if match := re.findall(f"{emoji} ?(.*) {currency}", res):
-                        text_ += f"<b>{self.custom_emojis.get(emoji)} {currency}:</b> <code>{match[0]}</code>\n"
-
+                        text_ += (
+                            f"<b>{self.custom_emojis.get(emoji)} {currency}:</b> "
+                            f"<code>{match[0]}</code>\n"
+                        )
 
                 if match := re.findall(r"(.*) BTC", res):
                     text_ += f"\n<b>{self.custom_emojis['bit']} BTC:</b> <code>{match[0]}</code>\n"
@@ -192,4 +260,17 @@ class Aeconv(loader.Module):
             await utils.answer(message, self.strings["already"])
         except TimeoutError:
             await utils.answer(message, self.strings["unsupported"])
-    
+        except IndexError:
+            await utils.answer(message, self.strings["no_args"])
+            
+            
+    @loader.command(ru_doc="[валюта] | без аргументов покажет список валют")
+    async def controlvalute(self, message: Message):
+        """[currency] | without arguments will show list of currencies"""
+        args = utils.get_args_raw(message)
+        if not args:
+            return await utils.answer(message, self.strings["choose_currency"], reply_markup=self.currencies_markup())
+        await utils.answer(message, self.strings["choose_currency"], reply_markup=self.currencies_markup(args))
+                    
+            
+        
