@@ -232,9 +232,9 @@ class Aeconv(loader.Module):
         if not args:
             await utils.answer(message, self.strings["no_args"])
             return
-        if args.split(" ")[1].upper() not in self.currencies:
-            await utils.answer(message, self.strings["wrong_currency"])
-            return
+        # if args.split(" ")[1].upper() not in self.currencies:
+        #     await utils.answer(message, self.strings["wrong_currency"])
+        #     return
         await utils.answer(message, self.strings["wait"])
         if "ton".lower() in args.lower():
             li_args = args.split(" ")
