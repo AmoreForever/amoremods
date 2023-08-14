@@ -10,6 +10,7 @@
 # meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Alarm.jpg
 
 import re
+import pytz
 import random
 import logging
 import asyncio
@@ -59,6 +60,7 @@ class AlarmMod(loader.Module):
         "where_args": "<emoji document_id=5371015453013450536>🖕</emoji> <b>Where arguments?</b>",
         "incorrect_args": "<emoji document_id=5371015453013450536>🖕</emoji> <b>Incorrect arguments! Write like this:</b> <code>.setalarm mon 12:00 text</code>",
         "interval_doc": "Interval of sending notifications in seconds",
+        "time_zone_doc": "Time zone for alarms (for example, Europe/Moscow)",
     }
     strings_ru = {
         "set": "<emoji document_id=5870729937215819584>⏰</emoji> <b>Напоминание установлено на <code>{}</code>!</b>",
@@ -77,6 +79,7 @@ class AlarmMod(loader.Module):
         "where_args": "<emoji document_id=5371015453013450536>🖕</emoji> <b>Где аргументы?</b>",
         "incorrect_args": "<emoji document_id=5371015453013450536>🖕</emoji> <b>Неправильные аргументы! Пиши так:</b> <code>.setalarm пн 12:00 текст</code>",
         "interval_doc": "Интервал отправления напоминаний в секундах",
+        "time_zone_doc": "Часовой пояс для напоминаний (например, Europe/Moscow)",
     }
     
     def __init__(self):
@@ -86,7 +89,15 @@ class AlarmMod(loader.Module):
                 5,
                 lambda: self.strings("interval_doc"),
                 validator=loader.validators.Integer(minimum=1, maximum=60),
-            )
+            ),
+            loader.ConfigValue(
+                "time_zone",
+                "Europe/Moscow",
+                lambda: self.strings("time_zone_doc"),
+                validator=loader.validators.RegExp(
+                    r"^[\w/]+$",
+                )
+                ),
         )
     @loader.command(ru_doc="<день недели> <время> <сообщение> - установить напоминание")
     async def setalarm(self, message):
@@ -177,7 +188,7 @@ class AlarmMod(loader.Module):
         alarms = self.get("alarms", {})
         if not alarms:
             return
-        now = datetime.now()
+        now = datetime.now(tz=pytz.timezone(self.config["time_zone"]))
         day = now.weekday()
         hour = now.hour
         minute = now.minute
