@@ -31,3 +31,4 @@ fileext
 my_usernames
 fragment_checker
 alarm
+speech
