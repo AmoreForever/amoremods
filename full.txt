@@ -31,4 +31,5 @@ fileext
 my_usernames
 fragment_checker
 alarm
+leta
 speech
