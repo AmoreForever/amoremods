@@ -97,7 +97,7 @@ class Leta(loader.Module):
         )
         await utils.answer(message, self.strings("ngs_set").format(args))
         
-    async def letdatcmd(self, message):
+    async def letdaycmd(self, message):
         """Set day time [HH:MM]"""
         args = utils.get_args_raw(message)
         if not args:
@@ -114,7 +114,7 @@ class Leta(loader.Module):
             "ngs",
             {
                message.chat_id: {
-                    "dat": args,
+                    "day": args,
                },
             }
         )
@@ -167,7 +167,7 @@ class Leta(loader.Module):
         """Check time"""
         ngs = self.get("ngs", {})
         for i in ngs:
-            if ngs[i]["dat"] == time.strftime("%H:%M"):
+            if ngs[i]["day"] == time.strftime("%H:%M"):
                 try:
                     await self.client.edit_permissions(ngs[i]['chat'], send_messages=True)
                     await self.client.send_message(ngs[i]["chat"], self.strings("day"))
