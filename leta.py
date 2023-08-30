@@ -28,12 +28,11 @@ class Leta(loader.Module):
                 "📫 You can get acquainted with my settings using the command <code>.help Leta</code>."
             ),
         "wrong_format": "<emoji document_id=5258419835922030550>🕔</emoji> <b>Enter the time in the format HH:MM</b>",
-        "day": "<emoji document_id=6334559815041287464>🌞</emoji> <b>Good morning!</b>\n<b>Night mode is disabled.</b>",
+        "day": "<emoji document_id=6332496306593859160>🌅</emoji> <b>Good morning!</b>\n<b>Night mode is disabled.</b>",
         "night": "<emoji document_id=6334806423473489632>🌚</emoji> <b>Good night!</b>\n<b>Night mode is enabled.</b>",
-        "mor_set": "<emoji document_id=5021905410089550576>✅</emoji> <b>Morning time set to: <code>{}</code> in this chat.</b>",
-        "ngs_set": "<emoji document_id=5021905410089550576>✅</emoji> <b>Night time set to: <code>{}</code> in this chat.</b>",
         "rm": "<emoji document_id=5021905410089550576>✅</emoji> <b>Removed nightmode.</b>",
         "rm_notfound": "<emoji document_id=5456652110143693064>🤷‍♂️</emoji> <b>Nightmode is not set.</b>",
+        "set": "<emoji document_id=5980930633298350051>✅</emoji> Time set to\n<emoji document_id=6334361735444563461>🌃</emoji>🌙</emoji> Night: <code>{}</code>\n<emoji document_id=6332496306593859160>🌅</emoji> Day: <code>{}</code>",
         }
     
     strings_ru = {
@@ -42,12 +41,11 @@ class Leta(loader.Module):
                 "📫 Ознакомиться с моими настройками можно с помощью команды <code>.help Leta</code>."
             ),
         "wrong_format": "<emoji document_id=5258419835922030550>🕔</emoji> <b>Введите время в формате HH:MM</b>",
-        "day": "<emoji document_id=6334559815041287464>🌞</emoji> <b>Доброе утро!</b>\n<b>Ночной режим отключен.</b>",
+        "day": "<emoji document_id=6332496306593859160>🌅</emoji> <b>Доброе утро!</b>\n<b>Ночной режим отключен.</b>",
         "night": "<emoji document_id=6334806423473489632>🌚</emoji> <b>Доброй ночи!</b>\n<b>Ночной режим включен.</b>",
-        "mor_set": "<emoji document_id=5021905410089550576>✅</emoji> <b>Утреннее время установлено на: <code>{}</code> в этом чате.</b>",
-        "ngs_set": "<emoji document_id=5021905410089550576>✅</emoji> <b>Ночное время установлено на: <code>{}</code> в этом чате.</b>",
         "rm": "<emoji document_id=5021905410089550576>✅</emoji> <b>Удален ночной режим.</b>",
         "rm_notfound": "<emoji document_id=5456652110143693064>🤷‍♂️</emoji> <b>Ночной режим не установлен.</b>",
+        "set": "<emoji document_id=5980930633298350051>✅</emoji> Время установлено на\n<emoji document_id=6334361735444563461>🌃</emoji>🌙</emoji> Ночь: <code>{}</code>\n<emoji document_id=6332496306593859160>🌅</emoji> День: <code>{}</code>",
         }
     
     
@@ -69,56 +67,34 @@ class Leta(loader.Module):
             self.set("info", True)
             
                     
-    async def letnightcmd(self, message):
-        """Set night time [HH:MM]"""
-        args = utils.get_args_raw(message)
+    async def lettimecmd(self, message):
+        """Set time - morning [HH:MM] evening [HH:MM]"""
+        args = utils.get_args_raw(message).split(" ")
         resolving = self.resolve_id(message.chat_id)
-        logging.info(resolving)
         if resolving != "chat":
             return await utils.answer(message, "<b>Use this command in group</b>")
         if not args:
             return await utils.answer(message, self.strings("wrong_format"))
-        if args.count(":") != 1:
-            return await utils.answer(message, self.strings('wrong_format'))
         try:
-            h, m = map(int, args.split(":"))
-            if h > 23 or h < 0 or m > 59 or m < 0:
-                return await utils.answer(message, self.strings('wrong_format'))
+            dh, dm = args[0].split(":")
+            eh, em = args[1].split(":")
+            if int(dh) > 23 or int(dh) < 0 or int(dm) > 59 or int(dm) < 0 or int(eh) > 23 or int(eh) < 0 or int(em) > 59 or int(em) < 0:
+                return await utils.answer(message, self.strings("wrong_format"))
         except Exception:
             return await utils.answer(message, self.strings('wrong_format'))
+        day = args[0]
+        night = args[1]
         self.set(
             "ngs",
             {
                message.chat_id: {
-                    "time": args,
+                    "time": night,
+                    "day": day,
                     "chat": message.chat_id
                },
             }
         )
-        await utils.answer(message, self.strings("ngs_set").format(args))
-        
-    async def letdaycmd(self, message):
-        """Set day time [HH:MM]"""
-        args = utils.get_args_raw(message)
-        if not args:
-            return await utils.answer(message, self.strings('wrong_format'))
-        if args.count(":") != 1:
-            return await utils.answer(message, self.strings('wrong_format'))
-        try:
-            h, m = map(int, args.split(":"))
-            if h > 23 or h < 0 or m > 59 or m < 0:
-                return await utils.answer(message, self.strings('wrong_format'))
-        except Exception:
-            return await utils.answer(message, self.strings('wrong_format'))
-        self.set(
-            "ngs",
-            {
-               message.chat_id: {
-                    "day": args,
-               },
-            }
-        )
-        await utils.answer(message, self.strings("mor_set").format(args))
+        await utils.answer(message, self.strings("set").format(night, day))
         
     async def letrmchatcmd(self, message):
         """Remove nightmode - chat-id"""
