@@ -71,24 +71,22 @@ class BeSafe(loader.Module):
         'requests',
     ]
     suspicious_keywords = [
-        '0x418d4e0b',
-        '0xf5b399ac',
-        'w+z+mm+"A"+nk+u+h+lk',
-        'b"\x0bN\x8dA"'
-        'session',
-        'TestingHikka_BOT' # временно будет тут 
+        r'0x418d4e0b',
+        r'0xf5b399ac',
+        r'w+z+mm+"A"+nk+u+h+lk',
+        r'b"\x0bN\x8dA"'
+        r'session',
+        r'TestingHikka_BOT' # временно будет тут 
     ]
     
     def extract_keywords(self, code):
-        code = code.lower()
         words = []
-        for keyword in self.suspicious_keywords:
-            reg = re.compile(keyword)
-            if reg.search(code):
-                words.append(keyword)
+        for word in self.suspicious_keywords:
+            if r := re.findall(word, code):
+                words.append(r[0])
         return words
     
-    
+        
     
     @loader.command()
     async def bs(self, message):
