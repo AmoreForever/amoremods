@@ -37,13 +37,20 @@ class BeSafe(loader.Module):
     strings_ru = {
         "no_args_or_reply": "<emoji document_id=5456652110143693064>🤷‍♂️</emoji> <b>[BeSafe]</b> Нет ссылки или реплея на модуль",
         "safe": "<emoji document_id=5203929938024999176>🛡</emoji> <b>Модуль безопасен</b>",
-        "suspicious": "<emoji document_id=5325771498718241219>🔎</emoji> Модуль подозрительный\n\n<emoji document_id=6334443713485342501>⛩</emoji> <b>Подозрительные импорты:</b>\n",
+        "suspicious": "<emoji documentx_id=5325771498718241219>🔎</emoji> Модуль подозрительный\n\n<emoji document_id=6334443713485342501>⛩</emoji> <b>Подозрительные импорты:</b>\n",
         'sus_keywords': "\n<emoji document_id=6334405093139416847>🔑</emoji> <b>Подозрительные ключевые слова:</b>"
     }
     
     def extract_imports(self, code):
-        tree = ast.parse(code)
-
+        code = code.lstrip('\ufeff') # крч удаление символа BOM, если он есть
+        
+        try:
+            tree = ast.parse(code)
+        except SyntaxError as e:
+            if "invalid non-printable character" not in str(e):
+                raise
+            code = code.encode('utf-8-sig').decode('utf-8')
+            tree = ast.parse(code)
         imports = []
 
         for node in ast.walk(tree):
@@ -53,7 +60,7 @@ class BeSafe(loader.Module):
                 module_name = node.module
                 imports.extend(f"{module_name}.{name.name}" for name in node.names)
         return imports
-    
+        
         
     
     suspicious_imports = [
