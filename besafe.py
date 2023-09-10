@@ -85,7 +85,6 @@ class BeSafe(loader.Module):
         for keyword in self.suspicious_keywords:
             reg = re.compile(keyword)
             if reg.search(code):
-                logging.info(keyword)
                 words.append(keyword)
         return words
     
