@@ -7,7 +7,7 @@
 
 # meta developer: @hikamorumods
 # meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Hacker.jpg
-__version__ = (1, 0, 0)
+__version__ = (1, 0, 1)
 
 
 from .. import loader, utils
@@ -29,7 +29,7 @@ class HackerMod(loader.Module):
 	async def hackercmd(self, message):
 		"""Reply to text or write text"""
 		
-		ufr = requests.get("https://0x0.st/opzq.ttf")
+		ufr = requests.get("https://x0.at/Rv0Q.ttf")
 		f = ufr.content
 		
 		reply = await message.get_reply_message()
@@ -43,7 +43,7 @@ class HackerMod(loader.Module):
 		else:
 			txt = utils.get_args_raw(message)
 		await message.edit(self.strings("processing"))
-		pic = requests.get("https://0x0.st/opzN.jpg")
+		pic = requests.get("https://x0.at/ZTis.jpg")
 		pic.raw.decode_content = True
 		img = Image.open(io.BytesIO(pic.content)).convert("RGB")
  
