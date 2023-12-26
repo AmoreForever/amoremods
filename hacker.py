@@ -31,22 +31,20 @@ class HackerMod(loader.Module):
 		
 		ufr = requests.get("https://x0.at/Rv0Q.ttf")
 		f = ufr.content
-		
+
 		reply = await message.get_reply_message()
-		args = utils.get_args_raw(message)
-		if not args:
-			if not reply:
-				await message.edit(self.strings('what', message))
-				return
-			else:
-				txt = reply.raw_text
-		else:
+		if args := utils.get_args_raw(message):
 			txt = utils.get_args_raw(message)
+		elif reply:
+			txt = reply.raw_text
+		else:
+			await message.edit(self.strings('what', message))
+			return
 		await message.edit(self.strings("processing"))
 		pic = requests.get("https://x0.at/ZTis.jpg")
 		pic.raw.decode_content = True
 		img = Image.open(io.BytesIO(pic.content)).convert("RGB")
- 
+
 		W, H = img.size
 		txt = txt.replace("\n", "𓃐")
 		text = "\n".join(wrap(txt, 19))
