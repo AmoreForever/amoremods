@@ -34,3 +34,5 @@ alarm
 leta
 speech
 jutsu
+usernamestealer
+lexiwiz
