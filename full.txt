@@ -33,3 +33,4 @@ fragment_checker
 alarm
 leta
 speech
+jutsu
