@@ -209,13 +209,13 @@ class BirthdayWish(loader.Module):
         expiration_time = int(args[1]) if len(args) > 1 else 20
 
         me = await message.client.get_me()
+        
         self.tg_link = f"https://t.me/{me.username}" or "https://t.me/Unknown"
         self.preview_name = me.first_name
         self.name = text
 
         port = random.randint(1000, 9999)
-
-        global runner
+        
         url, runner = await self.tunnel_handler(port)
         await utils.answer(
             message, self.strings("web_url").format(url, expiration_time)
